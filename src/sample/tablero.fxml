@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+
+<GridPane alignment="CENTER" maxHeight="-Infinity" fx:controller="sample.Controller" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" style="-fx-background-color: #26d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+    </children>
+    <opaqueInsets>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </opaqueInsets>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</GridPane>
