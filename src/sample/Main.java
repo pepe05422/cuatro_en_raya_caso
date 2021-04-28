@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("tablero.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Tablero.fxml"));
         primaryStage.setTitle("Conecta Cuatbroo!!!!");
         primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.show();
