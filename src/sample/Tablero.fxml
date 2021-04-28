@@ -6,10 +6,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <GridPane fx:id="pantallaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="839.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TableroController">
@@ -33,73 +33,8 @@
             </Label>
          </children>
       </VBox>
-      <VBox fx:id="espacioJuego" alignment="CENTER" style="-fx-background-color: #687980;" GridPane.rowIndex="1">
-         <children>
-            <GridPane alignment="CENTER" prefWidth="954.0" style="-fx-background-color: #687980;" VBox.vgrow="ALWAYS">
-              <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Circle fill="#fefecc" onMousePressed="#addCircle" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#fefecc" layoutX="79.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" />
-                  <Circle fill="#fefecc" layoutX="79.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" />
-                  <Circle fill="#fefecc" layoutX="344.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" />
-                  <Circle fill="#fefecc" layoutX="79.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" />
-                  <Circle fill="#fefecc" layoutX="79.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" />
-                  <Circle fill="#fefecc" layoutX="79.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" />
-                  <Circle fill="#fefecc" layoutX="79.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="1" />
-                  <Circle fill="#fefecc" layoutX="207.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Circle fill="#fefecc" layoutX="344.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Circle fill="#fefecc" layoutX="480.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Circle fill="#fefecc" layoutX="616.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <Circle fill="#fefecc" layoutX="752.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <Circle fill="#fefecc" layoutX="888.0" layoutY="80.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                  <Circle fill="#fefecc" layoutX="79.0" layoutY="220.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="2" />
-                  <Circle fill="#fefecc" layoutX="207.0" layoutY="220.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Circle fill="#fefecc" layoutX="344.0" layoutY="220.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Circle fill="#fefecc" layoutX="480.0" layoutY="220.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <Circle fill="#fefecc" layoutX="616.0" layoutY="220.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <Circle fill="#fefecc" layoutX="752.0" layoutY="220.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                  <Circle fill="#fefecc" layoutX="888.0" layoutY="220.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                  <Circle fill="#fefecc" layoutX="79.0" layoutY="360.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="3" />
-                  <Circle fill="#fefecc" layoutX="207.0" layoutY="360.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Circle fill="#fefecc" layoutX="344.0" layoutY="360.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Circle fill="#fefecc" layoutX="480.0" layoutY="360.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Circle fill="#fefecc" layoutX="616.0" layoutY="360.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                  <Circle fill="#fefecc" layoutX="752.0" layoutY="360.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                  <Circle fill="#fefecc" layoutX="888.0" layoutY="360.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                  <Circle fill="#fefecc" layoutX="79.0" layoutY="500.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="4" />
-                  <Circle fill="#fefecc" layoutX="207.0" layoutY="500.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Circle fill="#fefecc" layoutX="344.0" layoutY="500.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <Circle fill="#fefecc" layoutX="480.0" layoutY="500.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <Circle fill="#fefecc" layoutX="616.0" layoutY="500.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                  <Circle fill="#fefecc" layoutX="752.0" layoutY="500.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                  <Circle fill="#fefecc" layoutX="888.0" layoutY="500.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-                  <Circle fill="#fefecc" layoutX="79.0" layoutY="640.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="5" />
-                  <Circle fill="#fefecc" layoutX="207.0" layoutY="640.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Circle fill="#fefecc" layoutX="344.0" layoutY="640.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Circle fill="#fefecc" layoutX="480.0" layoutY="640.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                  <Circle fill="#fefecc" layoutX="616.0" layoutY="640.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                  <Circle fill="#fefecc" layoutX="752.0" layoutY="640.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                  <Circle fill="#fefecc" layoutX="888.0" layoutY="640.0" opacity="0.6" radius="60.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-               </children>
-            </GridPane>
-         </children>
-      </VBox>
+      <Pane fx:id="espacioJuego" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+      <VBox fx:id="espacioJuego" alignment="CENTER" style="-fx-background-color: #687980;" GridPane.rowIndex="1" />
       <VBox alignment="CENTER" style="-fx-background-color: #02475e;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <children>
             <Label prefHeight="44.0" prefWidth="229.0" text="Modo de juego" textFill="#eeeeee">
