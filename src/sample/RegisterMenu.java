@@ -9,31 +9,37 @@ import javafx.scene.layout.VBox;
 
 
 public class RegisterMenu {
-    @FXML  private VBox formularioDeInicioDeSesion;
-    @FXML  private VBox formularioDeRegistro;
-    @FXML  private TextField UsuarioRegistro;
-    @FXML  private TextField ContraseñaRegistro;
-    @FXML  private TextField correoRegistro;
-    @FXML  private DatePicker FechaNacimientoRegistro;
-    @FXML  private TextField nombreUsuarioInicioSesion;
-    @FXML  private TextField contraseñaInicioSesion;
-    @FXML  private Button iniciarSesion;
-    @FXML  private Button Registrarse;
+    @FXML private VBox formularioDeInicioDeSesion;
+    @FXML private VBox formularioDeRegistro;
+    @FXML private TextField UsuarioRegistro;
+    @FXML private TextField ContraseñaRegistro;
+    @FXML private TextField correoRegistro;
+    @FXML private DatePicker FechaNacimientoRegistro;
+    @FXML private TextField nombreUsuarioInicioSesion;
+    @FXML private TextField contraseñaInicioSesion;
+    @FXML private Button iniciarSesion;
+    @FXML private Button Registrarse;
+
+    boolean registroRellenado = ( UsuarioRegistro.getLength() == 0 || ContraseñaRegistro.getLength() == 0 || correoRegistro.getLength() == 0 || FechaNacimientoRegistro.getValue() == null );
+    boolean ingresoRellenado  = ( nombreUsuarioInicioSesion.getLength() != 0 && contraseñaInicioSesion.getLength() != 0 );
 
     @FXML  protected void cambioRegistroIngreso(ActionEvent event) {
-        if (UsuarioRegistro.getLength() == 0 || ContraseñaRegistro.getLength() == 0 || correoRegistro.getLength() == 0 || FechaNacimientoRegistro.getValue() == null){
-            if (formularioDeRegistro.isVisible() && iniciarSesion.isArmed()){
-                formularioDeInicioDeSesion.setVisible(true);
+
+        if (formularioDeRegistro.isVisible()) {
+            if (registroRellenado && Registrarse.isArmed()) {
+                System.out.println("Mi abuela en patinete");
+            } else if (!registroRellenado && Registrarse.isArmed()) {
                 formularioDeRegistro.setVisible(false);
-            } else if (Registrarse.isArmed()){
+                formularioDeInicioDeSesion.setVisible(true);
+            }
+        }
+
+        if (formularioDeInicioDeSesion.isVisible()) {
+            if (ingresoRellenado && iniciarSesion.isArmed()) {
+                System.out.println("mi patinete en mi abuela");
+            } else if (!ingresoRellenado && iniciarSesion.isArmed()) {
                 formularioDeInicioDeSesion.setVisible(false);
                 formularioDeRegistro.setVisible(true);
-            }
-        } else if (nombreUsuarioInicioSesion.getLength() != 0 && contraseñaInicioSesion.getLength() != 0) {
-            if (iniciarSesion.isArmed()){
-                System.out.println("Mi abuela en patinete");
-            } else if (Registrarse.isArmed()){
-                System.out.println("Mi patinete en mi abuela");
             }
         }
 
