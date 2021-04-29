@@ -10,13 +10,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("RegisterMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Tablero.fxml"));
         primaryStage.setTitle("Conecta Cuatro");
         primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
     }
-
-
     public static void main(String[] args) {
         launch(args);
     }
