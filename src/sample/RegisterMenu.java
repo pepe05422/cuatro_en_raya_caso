@@ -28,22 +28,22 @@ public class RegisterMenu {
         boolean ingresoRellenado  = ( usuarioInicioSesion.getLength() != 0 && contrasenaInicioSesion.getLength() != 0 );
 
 
-        if (formularioRegistro.isVisible()) {                                       // Visible el formulario de Registro
-            if (registroRellenado && registrarse.isArmed()) {                       // Formulario de Registro cumplimentado + Click
+        if (formularioRegistro.isVisible()) {                                       // Si   Visible el formulario de Registro
+            if (registroRellenado && registrarse.isArmed()) {                       //          Formulario de Registro cumplimentado + Click
                 System.out.println("Mi abuela en patinete");
 
-            } else if (!registroRellenado && registrarse.isArmed()) {               // Cambio de VBox de Registro a Inicio sesion
+            } else if (iniciarSesion.isArmed()) {                                   // Sino     Cambio de VBox de Registro a Inicio sesion
                 formularioRegistro.setVisible(false);
                 formularioInicioDeSesion.setVisible(true);
             }
-        } else if (formularioInicioDeSesion.isVisible()) {                          // Visible el formulario de Inicio sesion
-            if (ingresoRellenado && iniciarSesion.isArmed()) {                      // Formulario de Inicio sesion cumplimentado + Click
+
+        } else if (formularioInicioDeSesion.isVisible()) {                          // Si   Visible el formulario de Inicio sesion
+            if (ingresoRellenado && iniciarSesion.isArmed()) {                      //          Formulario de Inicio sesion cumplimentado + Click
                 System.out.println("mi patinete en mi abuela");
 
-            } else if (!ingresoRellenado && iniciarSesion.isArmed()) {              // Cambio de VBox de Inicio sesion a Registro
+            } else if (registrarse.isArmed()) {                                     // Sino    Cambio de VBox de Inicio sesion a Registro
                 formularioRegistro.setVisible(true);
                 formularioInicioDeSesion.setVisible(false);
-
             }
         }
     }
