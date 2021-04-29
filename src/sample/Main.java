@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader root = new FXMLLoader(getClass().getResource("Untitled1.fxml"));
+        FXMLLoader root = new FXMLLoader(getClass().getResource("Tablero.fxml"));
         GridPane pantallaPrincipal = root.load();
         tablero = root.getController();
         tablero.crearContenido();
@@ -22,8 +22,10 @@ public class Main extends Application {
         Scene escena = new Scene(pantallaPrincipal);
         primaryStage.setScene(escena);
         primaryStage.setTitle("Connecta 4");
-        primaryStage.setMaxWidth(1100.0);
-        primaryStage.setMaxHeight(800.0);
+        primaryStage.setResizable(true); // Cambia esto para que se pueda o no redimensionar
+        primaryStage.setMinWidth(1100);
+        primaryStage.setMinHeight(598);
+        primaryStage.setMaxHeight(598);
         primaryStage.show();
     }
 
