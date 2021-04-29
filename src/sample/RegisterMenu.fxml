@@ -33,16 +33,16 @@
             </Label>
          </children>
       </VBox>
-      <VBox id="formularioDeInicioDeSesion" fx:id="formularioDeInicioDeSesion" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" spacing="20.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox id="formularioDeInicioDeSesion" fx:id="formularioInicioDeSesion" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" spacing="20.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="nombreUsuarioInicioSesion" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" promptText="Usuario" />
+                  <TextField fx:id="usuarioInicioSesion" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" promptText="Usuario" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="contraseñaInicioSesion" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" promptText="Contraseña" />
+                  <TextField fx:id="contrasenaInicioSesion" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" promptText="Contraseña" />
                </children>
             </HBox>
          </children>
@@ -50,16 +50,16 @@
             <Insets left="50.0" right="50.0" top="10.0" />
          </padding>
       </VBox>
-      <VBox id="formularioDeRegistro" fx:id="formularioDeRegistro" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <VBox id="formularioDeRegistro" fx:id="formularioRegistro" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="UsuarioRegistro" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" promptText="Usuario" />
+                  <TextField fx:id="usuarioRegistro" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" promptText="Usuario" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="ContraseñaRegistro" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" promptText="Contraseña" />
+                  <TextField fx:id="contrasenaRegistro" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" promptText="Contraseña" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -69,15 +69,15 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <DatePicker fx:id="FechaNacimientoRegistro" promptText="Fecha de nacimiento" showWeekNumbers="true" />
+                  <DatePicker fx:id="fechaNacimientoRegistro" promptText="Fecha de nacimiento" showWeekNumbers="true" />
                </children>
             </HBox>
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <Button fx:id="iniciarSesion" mnemonicParsing="false" onAction="#cambioRegistroIngreso" text="Iniciar Sesion" />
-            <Button fx:id="Registrarse" mnemonicParsing="false" onAction="#cambioRegistroIngreso" text="Registrarse" />
+            <Button fx:id="iniciarSesion" mnemonicParsing="false" onAction="#CambioRegistroInicioSesion" text="Iniciar Sesion" />
+            <Button fx:id="registrarse" mnemonicParsing="false" onAction="#CambioRegistroInicioSesion" text="Registrarse" />
          </children>
       </HBox>
    </children>
