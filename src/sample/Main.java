@@ -16,7 +16,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
         Escena = new Scene(loadFXML("RegisterMenu"),1200, 800);
         primaryStage.setScene(Escena);
         primaryStage.show();

@@ -77,6 +77,7 @@ public class TableroController implements Initializable {
                 circulo.setSmooth(true);
                 circulo.setTranslateX(j*(radio+5)+radio/4);
                 circulo.setTranslateY(i*(radio+5)+radio/4);
+                gridVbox = Shape.subtract(gridVbox, circulo);
             }
         }
         gridVbox.setFill(Color.rgb(104, 121, 128));
@@ -87,16 +88,16 @@ public class TableroController implements Initializable {
         List<Rectangle> rectangleList=new ArrayList<>();
         for (int j = 0; j < columnas; j++){
             Rectangle rectangle=new Rectangle(radio,(filas+1)*radio);
-            rectangle.setFill(Color.BLUE);
+            rectangle.setFill(Color.TRANSPARENT);
             rectangle.setTranslateX(j*(radio+5)+radio/4);
 
             rectangle.setOnMouseEntered(event -> rectangle.setFill(Color.valueOf("#eeeeee66")));
-            rectangle.setOnMouseExited(event -> rectangle.setFill(Color.BLUE));
+            rectangle.setOnMouseExited(event -> rectangle.setFill(Color.TRANSPARENT));
 
             final int columna=j; //because of lambda expression
             rectangle.setOnMouseClicked(event -> {
                 if (puedoInsertar) {
-                    puedoInsertar = false;
+                    puedoInsertar = true;
                     insertarFicha(new Ficha(turnoJugador), columna);
                 }
 
@@ -164,14 +165,15 @@ public class TableroController implements Initializable {
 
     private static class Ficha extends Circle {
 
-        private final boolean control;
+        private final boolean alguienEstaMoviendo;
 
-        public Ficha(boolean control) {
+        public Ficha(boolean alguienEstaMoviendo) {
 
-            super(radio, control ? Color.rgb(14,19,24) : Color.rgb(30,67,53));
-            this.control = control;
-            setCenterX(radio);
-            setCenterY(radio);
+            this.alguienEstaMoviendo = alguienEstaMoviendo;
+            setRadius(radio/2);
+            setFill(alguienEstaMoviendo ? Color.valueOf("#24303E") : Color.valueOf("#4CAA88"));
+            setCenterX(radio/2);
+            setCenterY(radio/2);
         }
     }
 }
