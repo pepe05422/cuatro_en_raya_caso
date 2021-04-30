@@ -25,7 +25,7 @@
     </rowConstraints>
     <children>
         <Pane fx:id="espacioJuego" prefWidth="950.0" style="-fx-background-color: #687980;" GridPane.rowIndex="1" />
-        <VBox alignment="CENTER" style="-fx-background-color: #687980;" visible="false" GridPane.rowIndex="1">
+        <VBox fx:id="modoEspera" alignment="CENTER" style="-fx-background-color: #687980;" visible="false" GridPane.rowIndex="1">
             <children>
                 <Label prefHeight="44.0" prefWidth="666.0" text="Siga las instrucciones de derecha para jugar" textFill="#eeeeee">
                     <font>
@@ -34,7 +34,7 @@
                 </Label>
             </children>
         </VBox>
-        <VBox alignment="CENTER" style="-fx-background-color: #02475e;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+        <VBox fx:id="modoAntesJuego" alignment="CENTER" style="-fx-background-color: #02475e;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
             <children>
                 <Region prefHeight="663.0" prefWidth="373.0" />
                 <Label prefHeight="44.0" prefWidth="229.0" text="Modo de juego" textFill="#eeeeee">
@@ -59,7 +59,7 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <Button fx:id="modePc" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#choosePC" style="-fx-background-color: #f3bda1#f3bda1;" text="Ordenador" textFill="WHITE" GridPane.columnIndex="1">
+                        <Button fx:id="modePc" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: #f3bda1#f3bda1;" text="Ordenador" textFill="WHITE" GridPane.columnIndex="1">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -89,7 +89,7 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
         </VBox>
-        <VBox alignment="TOP_CENTER" style="-fx-background-color: #02475e;" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+        <VBox fx:id="menuJuego" alignment="TOP_CENTER" style="-fx-background-color: #02475e;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
             <children>
                 <Label prefHeight="44.0" prefWidth="229.0" text="Modo de juego" textFill="#eeeeee">
                     <font>

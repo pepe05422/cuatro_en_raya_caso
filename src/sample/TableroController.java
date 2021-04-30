@@ -2,12 +2,15 @@ package sample;
 
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
@@ -25,7 +28,10 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class TableroController implements Initializable {
 
@@ -35,6 +41,10 @@ public class TableroController implements Initializable {
     private Ficha [][] tablero = new Ficha[filas][columnas];
 
     private boolean turnoJugador = true;
+
+    private static String jugadorUno = "Jug1";
+    private static String jugadorDos = "Jug2";
+
     private boolean puedoInsertar = true;
 
 
@@ -44,9 +54,11 @@ public class TableroController implements Initializable {
     @FXML
     public Pane espacioJuego;
     @FXML
-    public Label gameMode;
+    public VBox modoAntesJuego, menuJuego, modoEspera;
     @FXML
-    public Label gamePlayer;
+    public Label gameMode, gamePlayer;
+    @FXML
+    public Button modoMulti, modoPc;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -54,20 +66,26 @@ public class TableroController implements Initializable {
     }
 
 
-    public void crearContenido() {
+    /** Metodo controlador del tablero generado en la parte izquierda de la ventana **/
+    public void initialize() {
 
-        Shape gridVbox = crearGridVbox();
+        Shape espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
 
-        pantallaPrincipal.add(gridVbox, 0, 1);
+        pantallaPrincipal.add(espacioJuegoTablero, 0, 1); //Añadimos a "pantallaPrincipal" -> GridPane el objeto anterior en la posicion (0, 1)
 
-        List<Rectangle> rectangleList = craerColumnasClick();
-        for (Rectangle rectangle:rectangleList) {
-            pantallaPrincipal.add(rectangle, 0, 1);
+        List<Rectangle> recuadrosTablero = resaltarColumnas(); //Creamos una lista de objetos tipo Rectangle y las asociamos la metodo "resaltarColumnas()" en el bucle añadimos recuadro a cada posicion
+        for (Rectangle recuadro:recuadrosTablero) {
+            pantallaPrincipal.add(recuadro, 0, 1);
         }
 
+        gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
+
     }
-    private Shape crearGridVbox() {
-        Shape gridVbox = new Rectangle((columnas+1)*radio, (filas+1)*radio);
+
+    /** Metodo para dibujar o formar la rejilla del tablero **/
+    private Shape dibujarGridTablero() {
+
+        Shape espacioJuegoTablero = new Rectangle((columnas+1)*radio, (filas+1)*radio); //
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
@@ -78,35 +96,35 @@ public class TableroController implements Initializable {
                 circulo.setSmooth(true);
                 circulo.setTranslateX(j*(radio+5)+radio/4);
                 circulo.setTranslateY(i*(radio+5)+radio/4);
-                gridVbox = Shape.subtract(gridVbox, circulo);
+                espacioJuegoTablero = Shape.subtract(espacioJuegoTablero, circulo);
             }
         }
-        gridVbox.setFill(Color.rgb(104, 121, 128));
-        return gridVbox;
+        espacioJuegoTablero.setFill(Color.rgb(104, 121, 128));
+        return espacioJuegoTablero;
     }
 
-    private List<Rectangle> craerColumnasClick() {
-        List<Rectangle> rectangleList=new ArrayList<>();
+    private List<Rectangle> resaltarColumnas() {
+        List<Rectangle> recuadrosTablero=new ArrayList<>();
         for (int j = 0; j < columnas; j++){
-            Rectangle rectangle=new Rectangle(radio,(filas+1)*radio);
-            rectangle.setFill(Color.TRANSPARENT);
-            rectangle.setTranslateX(j*(radio+5)+radio/4);
+            Rectangle recuadro = new Rectangle(radio,(filas + 1) * radio);
+            recuadro.setFill(Color.TRANSPARENT);
+            recuadro.setTranslateX(j * (radio + 5) + radio/4);
 
-            rectangle.setOnMouseEntered(event -> rectangle.setFill(Color.valueOf("#eeeeee66")));
-            rectangle.setOnMouseExited(event -> rectangle.setFill(Color.TRANSPARENT));
+            recuadro.setOnMouseEntered(event -> recuadro.setFill(Color.valueOf("#eeeeee66")));
+            recuadro.setOnMouseExited(event -> recuadro.setFill(Color.TRANSPARENT));
 
             final int columna=j; //because of lambda expression
-            rectangle.setOnMouseClicked(event -> {
+            recuadro.setOnMouseClicked(event -> {
                 if (puedoInsertar) {
                     puedoInsertar = true;
                     insertarFicha(new Ficha(turnoJugador), columna);
                 }
 
             });
-            rectangleList.add(rectangle);
+            recuadrosTablero.add(recuadro);
         }
 
-        return rectangleList;
+        return recuadrosTablero;
     }
 
     private void insertarFicha(Ficha ficha, int columna) {
@@ -130,7 +148,101 @@ public class TableroController implements Initializable {
         TranslateTransition transicion = new TranslateTransition(Duration.seconds(0.4), ficha);
         transicion.setToY(fila * (radio + 5) + radio/4);
 
+        transicion.setOnFinished(event -> {
+            puedoInsertar = true;
+
+            if (juegoTerminado(filaActual, columna )) {
+                juegoFinalizado();
+                return;
+            }
+
+            turnoJugador = !turnoJugador;
+
+            gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
+
+        });
+
         transicion.play();
+
+    }
+    private boolean juegoTerminado(int fila, int columna) {
+        //Vertical Points
+        //A small example: player has inserted his last disc at row=2 , column=3
+        //
+        //index of each element present in column [row][column]:  0,3   1,3   2,3   3,3   4,3   5,3-->Poind2D
+        //notice same column of 3.
+
+        List<Point2D> fichasVertical = IntStream.rangeClosed(fila - 3, fila + 3)  //range of row values= 0,1,2,3,4,5
+                .mapToObj(f-> new Point2D(f, columna))  //0,3  1,3  2,3   3,3  4,3  5,3 ==> Point2D  x,y
+                .collect(Collectors.toList());
+
+        List<Point2D> fichasHorizontal = IntStream.rangeClosed(columna - 3, columna + 3)
+                .mapToObj(c-> new Point2D(fila, c))
+                .collect(Collectors.toList());
+
+        Point2D puntoPartida1 =new Point2D(fila - 3,columna + 3);
+        List<Point2D> puntoDiagonal1 = IntStream.rangeClosed(0,6)
+                .mapToObj(i-> puntoPartida1.add(i,-i))
+                .collect(Collectors.toList());
+
+        Point2D puntoPartida2 =new Point2D(fila - 3,columna - 3);
+        List<Point2D> puntoDiagonal2 = IntStream.rangeClosed(0,6)
+                .mapToObj(i-> puntoPartida2.add(i,i))
+                .collect(Collectors.toList());
+
+
+        boolean terminado=comprobarCombinacionCuatro(fichasVertical) || comprobarCombinacionCuatro(fichasHorizontal)
+                || comprobarCombinacionCuatro(puntoDiagonal1)
+                || comprobarCombinacionCuatro(puntoDiagonal2);
+
+        return terminado;
+    }
+
+    private boolean comprobarCombinacionCuatro(List<Point2D> puntos) {
+        int cadena = 0;
+
+        for (Point2D punto: puntos) {
+
+            int indiceFilaPorCadena = (int) punto.getX();
+            int indiceColumnaPorCadena = (int) punto.getY();
+
+            //getting disc at particular row and column
+            Ficha ficha = fichaDisponible(indiceFilaPorCadena, indiceColumnaPorCadena);
+
+            if (ficha != null && ficha.alguienEstaMoviendo == turnoJugador) {
+                // if the last inserted Disc belongs to the current player
+                cadena++;
+                if (cadena == 4) {
+                    return true;
+                }
+            } else {
+                cadena = 0;
+            }
+        }
+
+        return false;//as we havent got the combination
+    }
+
+    private void juegoFinalizado(){
+
+        String ganador = turnoJugador ? jugadorUno : jugadorDos;
+        System.out.println("Ganador es: " + ganador);
+
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Connect 4");
+        alert.setHeaderText("El ganador es " + ganador);
+        ButtonType noBtn =new ButtonType("Salir");
+        alert.getButtonTypes().setAll(noBtn);
+
+
+        Platform.runLater(()->{
+            Optional<ButtonType> btnClicked= alert.showAndWait();
+
+            if (btnClicked.isPresent() && btnClicked.get() == noBtn){
+                Platform.exit();
+                System.exit(0);
+            }
+        });
 
     }
 

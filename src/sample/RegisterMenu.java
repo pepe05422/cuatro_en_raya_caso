@@ -91,7 +91,7 @@ public class RegisterMenu {
                     e.printStackTrace();
                 }
                 **/
-                Main.setRoot("Tablero");
+                //Main.setRoot("Tablero");
 
             } else if (iniciarSesion.isArmed()) {                                   // Sino     Cambio de VBox de Registro a Inicio sesion
                 formularioRegistro.setVisible(false);
@@ -109,7 +109,7 @@ public class RegisterMenu {
                         " nombre y esa contraseña por favor intentalo de nuevo"); }
                  **/
                 // Esta instruccion hay que borrarla al comprobar que funciona la autentificacion de usuario
-                Main.setRoot("Tablero");
+                //Main.setRoot("Tablero");
 
             } else if (registrarse.isArmed()) {                                     // Sino    Cambio de VBox de Inicio sesion a Registro
                 formularioRegistro.setVisible(true);
