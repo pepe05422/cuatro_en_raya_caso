@@ -140,7 +140,7 @@ public class RegisterMenu {
         contrasenaInicioSesion.clear();
         contrasenaRegistro.clear();
         correoRegistro.clear();
-        fechaNacimientoRegistro.
+        //fechaNacimientoRegistro.
 
     }
 }
