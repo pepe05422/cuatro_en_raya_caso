@@ -19,21 +19,22 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Escena = new Scene(loadFXML("RegisterMenu"),1200, 800);
+        Escena = new Scene(loadFXML("Tablero"),1200, 800);
         primaryStage.setScene(Escena);
+        primaryStage.setTitle("Conecta 4");
+        primaryStage.setResizable(true);
+        primaryStage.setMinWidth(1100);
+        primaryStage.setMinHeight(598);
         primaryStage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {
-        //FXMLLoader root = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
-        Escena = new Scene(loadFXML("Tablero"),1200,800);
-
+        Escena.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
         GridPane pantallaPrincipal = fxmlLoader.load();
-        tablero = fxmlLoader.getController();
         tablero.crearContenido();
         return pantallaPrincipal;
     }
