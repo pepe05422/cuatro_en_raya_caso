@@ -83,7 +83,7 @@ public class TableroController implements Initializable {
     /** Metodo para dibujar o formar la rejilla del tablero **/
     private Shape dibujarGridTablero() {
 
-        Shape espacioJuegoTablero = new Rectangle((columnas+1)*radio, (filas+1)*radio); //
+        Shape espacioJuegoTablero = new Rectangle((columnas+4)*radio, (filas+4)*radio); //
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
@@ -92,8 +92,8 @@ public class TableroController implements Initializable {
                 circulo.setCenterX(radio/2);
                 circulo.setCenterY(radio/2);
                 circulo.setSmooth(true);
-                circulo.setTranslateX(j*(radio+5)+radio/4);
-                circulo.setTranslateY(i*(radio+5)+radio/4);
+                circulo.setTranslateX(j*(radio+5)+radio*2);
+                circulo.setTranslateY(i*(radio+5)+radio*2);
                 espacioJuegoTablero = Shape.subtract(espacioJuegoTablero, circulo);
             }
         }
@@ -104,9 +104,9 @@ public class TableroController implements Initializable {
     private List<Rectangle> resaltarColumnas() {
         List<Rectangle> recuadrosTablero=new ArrayList<>();
         for (int j = 0; j < columnas; j++){
-            Rectangle recuadro = new Rectangle(radio,(filas + 1) * radio);
+            Rectangle recuadro = new Rectangle(radio,(filas + 4) * radio);
             recuadro.setFill(Color.TRANSPARENT);
-            recuadro.setTranslateX(j * (radio + 5) + radio/4);
+            recuadro.setTranslateX(j * (radio + 5) + radio*2);
 
             recuadro.setOnMouseEntered(event -> recuadro.setFill(Color.valueOf("#eeeeee66")));
             recuadro.setOnMouseExited(event -> recuadro.setFill(Color.TRANSPARENT));
@@ -140,11 +140,11 @@ public class TableroController implements Initializable {
         }
         tablero[fila][columna] = ficha;
         espacioJuego.getChildren().add(ficha);
-        ficha.setTranslateX(columna * (radio+5) + radio/4);
+        ficha.setTranslateX(columna * (radio + 5) + radio*2);
 
         int filaActual = fila;
         TranslateTransition transicion = new TranslateTransition(Duration.seconds(0.4), ficha);
-        transicion.setToY(fila * (radio + 5) + radio/4);
+        transicion.setToY(fila * (radio + 5) + radio*2);
 
         transicion.setOnFinished(event -> {
             puedoInsertar = true;

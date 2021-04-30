@@ -33,6 +33,8 @@ public class Main extends Application {
         Escena = new Scene(loadFXML("RegisterMenu"),1200, 800);
         primaryStage.setScene(Escena);
         primaryStage.show();
+        primaryStage.setMinHeight(800); // ***Hay que ajustar la altura minima
+        primaryStage.setMinWidth(1200);
     }
 
     public static void main(String[] args) {
