@@ -135,7 +135,7 @@ public class TableroController implements Initializable {
             col = ((int) Math.random() * columnas);
 
             insertarFicha(new Ficha(turnoAI), col);
-            
+
         }
 
     }
@@ -185,7 +185,7 @@ public class TableroController implements Initializable {
         //index of each element present in column [row][column]:  0,3   1,3   2,3   3,3   4,3   5,3-->Poind2D
         //notice same column of 3.
 
-        List<Point2D> fichasVertical = IntStream.rangeClosed(fila - 3, fila + 3)  //range of row values= 0,1,2,3,4,5
+        List<Point2D> fichasVertical = IntStream.rangeClosed(fila - 3, fila + 3)  //Aqui el rango de valores en fila -> 0,1,2,3,4,5
                 .mapToObj(f-> new Point2D(f, columna))  //0,3  1,3  2,3   3,3  4,3  5,3 ==> Point2D  x,y
                 .collect(Collectors.toList());
 
@@ -275,7 +275,7 @@ public class TableroController implements Initializable {
 
 
 
-    public void chooseMulti(ActionEvent actionEvent) {
+    @FXML public void chooseMulti(ActionEvent actionEvent) {
         if (modoMulti.isArmed()) {
             modoAntesJuego.setVisible(false);
             menuJuego.setVisible(true);
@@ -284,14 +284,19 @@ public class TableroController implements Initializable {
         }
     }
 
-    public void choosePc(ActionEvent actionEvent) {
+    @FXML public void choosePc(ActionEvent actionEvent) throws NullPointerException {
         if (modoPc.isArmed()) {
-            System.out.println("Suka");
-            modoAntesJuego.setVisible(false);
-            menuJuego.setVisible(true);
-            gameMode.setText("Ordenador");
-            turnoAI = true;
-            insertarFichaAI();
+            try {
+                System.out.println("Suka");
+                modoAntesJuego.setVisible(false);
+                menuJuego.setVisible(true);
+                gameMode.setText("Ordenador");
+                turnoAI = true;
+                insertarFichaAI();
+
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
     }
 

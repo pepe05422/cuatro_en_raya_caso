@@ -34,61 +34,6 @@
                 </Label>
             </children>
         </VBox>
-        <VBox fx:id="modoAntesJuego" alignment="CENTER" style="-fx-background-color: #02475e;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-            <children>
-                <Region prefHeight="663.0" prefWidth="373.0" />
-                <Label prefHeight="44.0" prefWidth="229.0" text="Modo de juego" textFill="#eeeeee">
-                    <font>
-                        <Font size="36.0" />
-                    </font>
-                </Label>
-                <GridPane alignment="CENTER">
-                    <columnConstraints>
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-                        <Button fx:id="modeMulti" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#chooseMulti" style="-fx-background-color: #f3bda1; -fx-alignment: center;" text="Multijugador" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                        <Button fx:id="modePc" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#choosePc" style="-fx-background-color: #f3bda1#f3bda1;" text="Ordenador" textFill="WHITE" GridPane.columnIndex="1">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                    </children>
-                    <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                    </padding>
-                </GridPane>
-                <Region prefHeight="666.0" prefWidth="373.0" />
-                <Button fx:id="modeMulti11" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseMulti" style="-fx-background-color: #fb3640; -fx-alignment: center;" text="Cerrar sesión" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="13.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-            </children>
-            <GridPane.margin>
-                <Insets />
-            </GridPane.margin>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
-        </VBox>
         <VBox fx:id="menuJuego" alignment="TOP_CENTER" style="-fx-background-color: #02475e;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
             <children>
                 <Label prefHeight="44.0" prefWidth="229.0" text="Modo de juego" textFill="#eeeeee">
@@ -122,6 +67,61 @@
                     </cursor>
                 </Button>
             </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+        <VBox fx:id="modoAntesJuego" alignment="CENTER" style="-fx-background-color: #02475e;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <children>
+                <Region prefHeight="663.0" prefWidth="373.0" />
+                <Label prefHeight="44.0" prefWidth="229.0" text="Modo de juego" textFill="#eeeeee">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <GridPane alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="modeMulti" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseMulti" style="-fx-background-color: #f3bda1; -fx-alignment: center;" text="Multijugador" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <Button fx:id="modePc" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#choosePc" style="-fx-background-color: #f3bda1#f3bda1;" text="Ordenador" textFill="WHITE" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                    </padding>
+                </GridPane>
+                <Region prefHeight="666.0" prefWidth="373.0" />
+                <Button fx:id="modeMulti11" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseMulti" style="-fx-background-color: #fb3640; -fx-alignment: center;" text="Cerrar sesión" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </children>
+            <GridPane.margin>
+                <Insets />
+            </GridPane.margin>
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
