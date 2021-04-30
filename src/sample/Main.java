@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    private static Scene             Escena;
+    private static Scene Escena;
     //private static TableroController tablero;
 
     // Este metodo permite cargar el FXML unicamente pasando como parametro el nombre del
@@ -30,7 +30,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Escena = new Scene(loadFXML("Tablero"),1200, 800);
+        Escena = new Scene(loadFXML("RegisterMenu"),1200, 800);
         primaryStage.setScene(Escena);
         primaryStage.show();
     }

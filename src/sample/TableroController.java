@@ -47,6 +47,7 @@ public class TableroController implements Initializable {
 
     private boolean puedoInsertar = true;
 
+    private Shape espacioJuegoTablero;
 
 
     @FXML
@@ -60,16 +61,11 @@ public class TableroController implements Initializable {
     @FXML
     public Button modoMulti, modoPc;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
 
     /** Metodo controlador del tablero generado en la parte izquierda de la ventana **/
-    public void initialize() {
-
-        Shape espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
 
         pantallaPrincipal.add(espacioJuegoTablero, 0, 1); //Añadimos a "pantallaPrincipal" -> GridPane el objeto anterior en la posicion (0, 1)
 
@@ -81,6 +77,8 @@ public class TableroController implements Initializable {
         gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
 
     }
+
+
 
     /** Metodo para dibujar o formar la rejilla del tablero **/
     private Shape dibujarGridTablero() {
