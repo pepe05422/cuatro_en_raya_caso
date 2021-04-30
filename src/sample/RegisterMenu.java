@@ -24,12 +24,16 @@ import java.time.temporal.TemporalAmount;
 public class RegisterMenu {
     @FXML  private VBox         formularioInicioDeSesion;
     @FXML  private VBox         formularioRegistro;
+
     @FXML  private TextField    usuarioRegistro;
     @FXML  private TextField    contrasenaRegistro;
     @FXML  private TextField    correoRegistro;
+
     @FXML  private DatePicker   fechaNacimientoRegistro;
+
     @FXML  private TextField    usuarioInicioSesion;
     @FXML  private TextField    contrasenaInicioSesion;
+
     @FXML  private Button       iniciarSesion;
     @FXML  private Button       registrarse;
 
@@ -108,7 +112,11 @@ public class RegisterMenu {
                         " nombre y esa contraseña por favor intentalo de nuevo"); }
                  **/
                 // Esta instruccion hay que borrarla al comprobar que funciona la autentificacion de usuario
-                Main.setRoot("Tablero");
+                try {
+                    Main.setRoot("Tablero");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             } else if (registrarse.isArmed()) {                                     // Sino    Cambio de VBox de Inicio sesion a Registro
                 formularioRegistro.setVisible(true);
@@ -122,6 +130,10 @@ public class RegisterMenu {
         Jugador1 = null;
     }
 
+    public void borrarJugador2() {
+        Jugador2 = null;
+    }
+
     public Player getJugador1() {
         return Jugador1;
     }
@@ -133,6 +145,8 @@ public class RegisterMenu {
     public Player getJugador2() {
         return Jugador2;
     }
+
+
 
     public void resetFields() {
         usuarioInicioSesion.clear();
