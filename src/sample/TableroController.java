@@ -61,7 +61,7 @@ public class TableroController implements Initializable {
     @FXML
     public Label gameMode, gamePlayer;
     @FXML
-    public Button modoMulti, modoPc;
+    public Button modoMulti, modoPc, cerrarSesion, cerrarSesion2;
 
 
     /** Metodo controlador del tablero generado en la parte izquierda de la ventana **/
@@ -260,14 +260,13 @@ public class TableroController implements Initializable {
     }
 
 
-    public  Ficha fichaDisponible(int fila, int columna) {
+    public Ficha fichaDisponible(int fila, int columna) {
 
         if (fila >= filas || fila < 0 || columna >= columnas || columna < 0){
             return null;
         }
         return tablero[fila][columna];
     }
-
 
 
     /** Controlador de botones de Modo de juego **/
@@ -283,7 +282,20 @@ public class TableroController implements Initializable {
             }
 
         }
+    @FXML public void cerrarSesion(ActionEvent event) throws IOException {
+        if (cerrarSesion.isArmed() || cerrarSesion2.isArmed()) {
+            try {
+                RegisterMenu jugador = new RegisterMenu();
+                jugador.borrarJugador1();
+                jugador.borrarJugador2();
+                Main.setRoot("RegisterMenu");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
+    
+    
 
     @FXML public void choosePc(ActionEvent event) throws IOException {
         if (modoPc.isArmed()) {
