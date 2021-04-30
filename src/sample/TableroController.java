@@ -153,7 +153,7 @@ public class TableroController implements Initializable {
         }
         return tablero[fila][columna];
     }
-    
+
 
     public void chooseMulti(ActionEvent actionEvent) {
     }
