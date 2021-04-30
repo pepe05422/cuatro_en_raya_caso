@@ -33,10 +33,13 @@ public class RegisterMenu {
     @FXML  private Button       iniciarSesion;
     @FXML  private Button       registrarse;
 
+    // Creacion de Objetos de las librerias para poder acceder a los metodos
+    // A parte decir que el Jugador1 será relevante para el LogIn y Registro
     Player Jugador1 = null;
+    Player Jugador2 = null;
+    Connect4 conecta4;
 
-
-
+    // La instancia para llamar al connect4 y acceder a la base de datos
     {
         try {
             conecta4 = Connect4.getSingletonConnect4();
@@ -63,13 +66,9 @@ public class RegisterMenu {
     }
         **/
 
-    Connect4 conecta4;
-
-    public Button getIniciarSesion() {
-        return iniciarSesion;
-    }
-
+    // Metodo unico encargado de la ejecucion de los botones LogIn y Register
     @FXML  protected void CambioRegistroInicioSesion(ActionEvent event) throws IOException {
+        // Declaracion de todos los datos almacenados en los input
          String usuarioNombreInicioSesion = usuarioInicioSesion.getText();
          String usuarioContrasenaInicioSesion = contrasenaInicioSesion.getText();
          String usuarioNombreRegistro = usuarioRegistro.getText();
@@ -77,7 +76,7 @@ public class RegisterMenu {
          String usuarioCorreoRegistro = correoRegistro.getText();
          LocalDate nacimiento = fechaNacimientoRegistro.getValue();
 
-
+         // Simplificacion de las condiciones para saber si se está rellenando el formulario
         boolean registroRellenado = ( usuarioRegistro.getLength() != 0 && contrasenaRegistro.getLength() != 0 && correoRegistro.getLength() != 0 && fechaNacimientoRegistro.getValue() != null );
         boolean ingresoRellenado  = ( usuarioInicioSesion.getLength() != 0 && contrasenaInicioSesion.getLength() != 0 );
 
@@ -116,5 +115,32 @@ public class RegisterMenu {
                 formularioInicioDeSesion.setVisible(false);
             }
         }
+    }
+
+
+    public void borrarJugador1() {
+        Jugador1 = null;
+    }
+
+    public Player getJugador1() {
+        return Jugador1;
+    }
+
+    public void setJugador2(String nombre, String contrasena) {
+        Jugador2 = conecta4.loginPlayer(nombre, contrasena);
+    }
+
+    public Player getJugador2() {
+        return Jugador2;
+    }
+
+    public void resetFields() {
+        usuarioInicioSesion.clear();
+        usuarioRegistro.clear();
+        contrasenaInicioSesion.clear();
+        contrasenaRegistro.clear();
+        correoRegistro.clear();
+        //fechaNacimientoRegistro.
+
     }
 }
