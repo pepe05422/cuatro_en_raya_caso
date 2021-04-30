@@ -133,4 +133,14 @@ public class RegisterMenu {
     public Player getJugador2() {
         return Jugador2;
     }
+
+    public void resetFields() {
+        usuarioInicioSesion.clear();
+        usuarioRegistro.clear();
+        contrasenaInicioSesion.clear();
+        contrasenaRegistro.clear();
+        correoRegistro.clear();
+        fechaNacimientoRegistro.
+
+    }
 }
