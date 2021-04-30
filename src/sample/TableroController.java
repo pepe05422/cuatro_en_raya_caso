@@ -41,6 +41,7 @@ public class TableroController implements Initializable {
     private Ficha [][] tablero = new Ficha[filas][columnas];
 
     private boolean turnoJugador = true;
+    private boolean turnoAI = true;
 
     private static String jugadorUno = "Jug1";
     private static String jugadorDos = "Jug2";
@@ -75,6 +76,8 @@ public class TableroController implements Initializable {
         }
 
         gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
+
+
 
     }
 
@@ -123,6 +126,18 @@ public class TableroController implements Initializable {
         }
 
         return recuadrosTablero;
+    }
+
+    private void insertarFichaAI() {
+        int col;
+
+        if (turnoAI) {
+            col = ((int) Math.random() * columnas);
+
+            insertarFicha(new Ficha(turnoAI), col);
+            
+        }
+
     }
 
     private void insertarFicha(Ficha ficha, int columna) {
@@ -261,9 +276,23 @@ public class TableroController implements Initializable {
 
 
     public void chooseMulti(ActionEvent actionEvent) {
+        if (modoMulti.isArmed()) {
+            modoAntesJuego.setVisible(false);
+            menuJuego.setVisible(true);
+            turnoAI = false;
+            gameMode.setText("Multijugador");
+        }
     }
 
-    public void choosePC(ActionEvent actionEvent) {
+    public void choosePc(ActionEvent actionEvent) {
+        if (modoPc.isArmed()) {
+            System.out.println("Suka");
+            modoAntesJuego.setVisible(false);
+            menuJuego.setVisible(true);
+            gameMode.setText("Ordenador");
+            turnoAI = true;
+            insertarFichaAI();
+        }
     }
 
     public void addCircle(MouseEvent mouseEvent) {

@@ -51,7 +51,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Button fx:id="modeMulti" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseMulti" style="-fx-background-color: #f3bda1; -fx-alignment: center;" text="Multijugador" textFill="WHITE">
+                        <Button fx:id="modeMulti" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#chooseMulti" style="-fx-background-color: #f3bda1; -fx-alignment: center;" text="Multijugador" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -59,7 +59,7 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <Button fx:id="modePc" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: #f3bda1#f3bda1;" text="Ordenador" textFill="WHITE" GridPane.columnIndex="1">
+                        <Button fx:id="modePc" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#choosePc" style="-fx-background-color: #f3bda1#f3bda1;" text="Ordenador" textFill="WHITE" GridPane.columnIndex="1">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
