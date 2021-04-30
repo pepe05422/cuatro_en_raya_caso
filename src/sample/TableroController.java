@@ -22,13 +22,16 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import sample.RegisterMenu;
 
 public class TableroController implements Initializable {
 
+    private RegisterMenu usuario = new RegisterMenu();
     private static final int columnas = 7;
     private static final int filas = 6;
     private static final double radio = 80.0;
@@ -47,6 +50,15 @@ public class TableroController implements Initializable {
     public Label gameMode;
     @FXML
     public Label gamePlayer;
+    @FXML
+    private Button cerrarSesion;
+
+    @FXML protected void CerrarSesion(ActionEvent event) throws IOException {
+        if (cerrarSesion.isArmed()) {
+            //usuario.borrarJugador1();
+            Main.setRoot("RegisterMenu");
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -141,13 +153,7 @@ public class TableroController implements Initializable {
         }
         return tablero[fila][columna];
     }
-
-
-
-
-
-
-
+    
 
     public void chooseMulti(ActionEvent actionEvent) {
     }
