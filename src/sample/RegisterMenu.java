@@ -36,6 +36,7 @@ public class RegisterMenu {
     // Creacion de Objetos de las librerias para poder acceder a los metodos
     // A parte decir que el Jugador1 será relevante para el LogIn y Registro
     Player Jugador1 = null;
+    Player Jugador2 = null;
     Connect4 conecta4;
 
     // La instancia para llamar al connect4 y acceder a la base de datos
@@ -89,7 +90,7 @@ public class RegisterMenu {
                     e.printStackTrace();
                 }
                 **/
-                Main.setRoot("Tablero");
+                //Main.setRoot("Tablero");
 
             } else if (iniciarSesion.isArmed()) {                                   // Sino     Cambio de VBox de Registro a Inicio sesion
                 formularioRegistro.setVisible(false);
@@ -114,5 +115,32 @@ public class RegisterMenu {
                 formularioInicioDeSesion.setVisible(false);
             }
         }
+    }
+
+
+    public void borrarJugador1() {
+        Jugador1 = null;
+    }
+
+    public Player getJugador1() {
+        return Jugador1;
+    }
+
+    public void setJugador2(String nombre, String contrasena) {
+        Jugador2 = conecta4.loginPlayer(nombre, contrasena);
+    }
+
+    public Player getJugador2() {
+        return Jugador2;
+    }
+
+    public void resetFields() {
+        usuarioInicioSesion.clear();
+        usuarioRegistro.clear();
+        contrasenaInicioSesion.clear();
+        contrasenaRegistro.clear();
+        correoRegistro.clear();
+        //fechaNacimientoRegistro.
+
     }
 }
