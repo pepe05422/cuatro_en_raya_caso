@@ -53,6 +53,7 @@ public class TableroController implements Initializable {
 
     }
 
+
     public void crearContenido() {
 
         Shape gridVbox = crearGridVbox();

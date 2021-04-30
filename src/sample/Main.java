@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Connect4;
 
@@ -13,6 +14,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     private static Scene Escena;
+
 
     @Override
     public void start(Stage primaryStage) throws IOException {
