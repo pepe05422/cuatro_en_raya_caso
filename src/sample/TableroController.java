@@ -271,6 +271,7 @@ public class TableroController implements Initializable {
 
     public void chooseMulti(ActionEvent actionEvent) {
     }
+    
 
     public void choosePC(ActionEvent actionEvent) {
     }
