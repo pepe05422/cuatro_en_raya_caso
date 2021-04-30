@@ -25,6 +25,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -128,6 +129,7 @@ public class TableroController implements Initializable {
         return recuadrosTablero;
     }
 
+    /** Insertado de fichas por Inteligencia Artificial **/
     private void insertarFichaAI() {
         int col;
 
@@ -179,14 +181,8 @@ public class TableroController implements Initializable {
 
     }
     private boolean juegoTerminado(int fila, int columna) {
-        //Vertical Points
-        //A small example: player has inserted his last disc at row=2 , column=3
-        //
-        //index of each element present in column [row][column]:  0,3   1,3   2,3   3,3   4,3   5,3-->Poind2D
-        //notice same column of 3.
-
-        List<Point2D> fichasVertical = IntStream.rangeClosed(fila - 3, fila + 3)  //Aqui el rango de valores en fila -> 0,1,2,3,4,5
-                .mapToObj(f-> new Point2D(f, columna))  //0,3  1,3  2,3   3,3  4,3  5,3 ==> Point2D  x,y
+        List<Point2D> fichasVertical = IntStream.rangeClosed(fila - 3, fila + 3)
+                .mapToObj(f-> new Point2D(f, columna))
                 .collect(Collectors.toList());
 
         List<Point2D> fichasHorizontal = IntStream.rangeClosed(columna - 3, columna + 3)
@@ -211,6 +207,7 @@ public class TableroController implements Initializable {
         return terminado;
     }
 
+    /** Metodo que comprueba si la combinacion es un exito. Recibe una lista de tipo Point2D donde vienen las cooredenadas de cada ficha **/
     private boolean comprobarCombinacionCuatro(List<Point2D> puntos) {
         int cadena = 0;
 
@@ -219,11 +216,12 @@ public class TableroController implements Initializable {
             int indiceFilaPorCadena = (int) punto.getX();
             int indiceColumnaPorCadena = (int) punto.getY();
 
-            //getting disc at particular row and column
+            // Marcamos si una ficha en concreto esta en una coordenada segun fila y columna
             Ficha ficha = fichaDisponible(indiceFilaPorCadena, indiceColumnaPorCadena);
 
+            // Si la ultima ficha que se ha insertado pertence al ultimo jugador
             if (ficha != null && ficha.alguienEstaMoviendo == turnoJugador) {
-                // if the last inserted Disc belongs to the current player
+
                 cadena++;
                 if (cadena == 4) {
                     return true;
@@ -233,9 +231,11 @@ public class TableroController implements Initializable {
             }
         }
 
-        return false;//as we havent got the combination
+        return false; // Si no hemos encontrado una combinacion ganadora
     }
 
+
+    /** Metodo que saca una ventana emergente una vez que un jugador saque una combinacion de 4 **/
     private void juegoFinalizado(){
 
         String ganador = turnoJugador ? jugadorUno : jugadorDos;
@@ -270,43 +270,33 @@ public class TableroController implements Initializable {
 
 
 
-
-
-
-
-
-    @FXML public void chooseMulti(ActionEvent actionEvent) {
+    /** Controlador de botones de Modo de juego **/
+    @FXML public void chooseMulti(ActionEvent actionEvent) throws IOException {
         if (modoMulti.isArmed()) {
-            modoAntesJuego.setVisible(false);
-            menuJuego.setVisible(true);
-            turnoAI = false;
-            gameMode.setText("Multijugador");
-        }
-    }
-
-    @FXML public void choosePc(ActionEvent actionEvent) throws NullPointerException {
-        if (modoPc.isArmed()) {
             try {
-                System.out.println("Suka");
                 modoAntesJuego.setVisible(false);
                 menuJuego.setVisible(true);
-                gameMode.setText("Ordenador");
-                turnoAI = true;
-                insertarFichaAI();
-
+                turnoAI = false;
+                gameMode.setText("Multijugador");
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
-    public void addCircle(MouseEvent mouseEvent) {
+    @FXML public void choosePc(ActionEvent event) throws IOException {
+        if (modoPc.isArmed()) {
+            modoAntesJuego.setVisible(false);
+            menuJuego.setVisible(true);
+            gameMode.setText("Ordenador");
+            turnoAI = true;
+            insertarFichaAI();
 
+        }
     }
 
-    public void start(Stage primaryStage) throws Exception {
-
-    }
+    /** Creamos un objeto de tipo Ficha que dependa del objeto principal Circulo **/
 
     private static class Ficha extends Circle {
 
