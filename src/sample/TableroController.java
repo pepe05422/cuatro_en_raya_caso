@@ -61,7 +61,7 @@ public class TableroController implements Initializable {
     @FXML
     public Label gameMode, gamePlayer;
     @FXML
-    public Button modoMulti, modoPc, cerrarSesion, cerrarSesion2;
+    public Button modoMulti, modoIA, cerrarSesion, cerrarSesion2;
 
 
     /** Metodo controlador del tablero generado en la parte izquierda de la ventana **/
@@ -268,7 +268,7 @@ public class TableroController implements Initializable {
 
 
     /** Controlador de botones de Modo de juego **/
-    @FXML public void chooseMulti(ActionEvent actionEvent) throws IOException {
+    @FXML public void modoMultijugadorLocal(ActionEvent actionEvent) throws IOException {
         if (modoMulti.isArmed()) {
             try {
                 modoAntesJuego.setVisible(false);
@@ -294,8 +294,8 @@ public class TableroController implements Initializable {
         }
     }
 
-    @FXML public void choosePc(ActionEvent event) throws IOException {
-        if (modoPc.isArmed()) {
+    @FXML public void modoMultijugadorIA(ActionEvent event) throws IOException {
+        if (modoIA.isArmed()) {
             try {
                 modoAntesJuego.setVisible(false);
                 menuJuego.setVisible(true);
