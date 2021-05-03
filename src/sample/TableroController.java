@@ -61,7 +61,7 @@ public class TableroController implements Initializable {
     @FXML
     public Label gameMode, gamePlayer;
     @FXML
-    public Button modoMulti, modoPc;
+    public Button modoMulti, modoPc, cerrarSesion, cerrarSesion2;
 
 
     /** Metodo controlador del tablero generado en la parte izquierda de la ventana **/
@@ -77,9 +77,6 @@ public class TableroController implements Initializable {
         }
 
         gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
-
-
-
     }
 
 
@@ -284,14 +281,30 @@ public class TableroController implements Initializable {
 
         }
     }
+    @FXML public void cerrarSesion(ActionEvent event) throws IOException {
+        if (cerrarSesion.isArmed() || cerrarSesion2.isArmed()) {
+            try {
+                RegisterMenu jugador = new RegisterMenu();
+                jugador.borrarJugador1();
+                jugador.borrarJugador2();
+                Main.setRoot("RegisterMenu");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @FXML public void choosePc(ActionEvent event) throws IOException {
         if (modoPc.isArmed()) {
-            modoAntesJuego.setVisible(false);
-            menuJuego.setVisible(true);
-            gameMode.setText("Ordenador");
-            turnoAI = true;
-            insertarFichaAI();
+            try {
+                modoAntesJuego.setVisible(false);
+                menuJuego.setVisible(true);
+                gameMode.setText("Ordenador");
+                turnoAI = true;
+                insertarFichaAI();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
 
         }
     }
