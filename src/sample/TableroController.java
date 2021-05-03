@@ -281,18 +281,6 @@ public class TableroController implements Initializable {
 
         }
     }
-    @FXML public void cerrarSesion(ActionEvent event) throws IOException {
-        if (cerrarSesion.isArmed() || cerrarSesion2.isArmed()) {
-            try {
-                RegisterMenu jugador = new RegisterMenu();
-                jugador.borrarJugador1();
-                jugador.borrarJugador2();
-                Main.setRoot("RegisterMenu");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     @FXML public void modoMultijugadorIA(ActionEvent event) throws IOException {
         if (modoIA.isArmed()) {
@@ -306,6 +294,19 @@ public class TableroController implements Initializable {
                 e.printStackTrace();
             }
 
+        }
+    }
+
+    @FXML public void cerrarSesion(ActionEvent event) throws IOException {
+        if (cerrarSesion.isArmed() || cerrarSesion2.isArmed()) {
+            try {
+                RegisterMenu jugador = new RegisterMenu();
+                jugador.borrarJugador1();
+                jugador.borrarJugador2();
+                Main.setRoot("RegisterMenu");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
