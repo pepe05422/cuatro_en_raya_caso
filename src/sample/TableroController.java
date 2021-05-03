@@ -77,9 +77,6 @@ public class TableroController implements Initializable {
         }
 
         gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
-
-
-
     }
 
 
@@ -260,13 +257,14 @@ public class TableroController implements Initializable {
     }
 
 
-    public Ficha fichaDisponible(int fila, int columna) {
+    public  Ficha fichaDisponible(int fila, int columna) {
 
         if (fila >= filas || fila < 0 || columna >= columnas || columna < 0){
             return null;
         }
         return tablero[fila][columna];
     }
+
 
 
     /** Controlador de botones de Modo de juego **/
@@ -282,6 +280,7 @@ public class TableroController implements Initializable {
             }
 
         }
+    }
     @FXML public void cerrarSesion(ActionEvent event) throws IOException {
         if (cerrarSesion.isArmed() || cerrarSesion2.isArmed()) {
             try {
@@ -294,16 +293,18 @@ public class TableroController implements Initializable {
             }
         }
     }
-    
-    
 
     @FXML public void choosePc(ActionEvent event) throws IOException {
         if (modoPc.isArmed()) {
-            modoAntesJuego.setVisible(false);
-            menuJuego.setVisible(true);
-            gameMode.setText("Ordenador");
-            turnoAI = true;
-            insertarFichaAI();
+            try {
+                modoAntesJuego.setVisible(false);
+                menuJuego.setVisible(true);
+                gameMode.setText("Ordenador");
+                turnoAI = true;
+                insertarFichaAI();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
 
         }
     }
