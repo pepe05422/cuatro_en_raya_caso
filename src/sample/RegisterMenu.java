@@ -81,12 +81,6 @@ public class RegisterMenu implements Initializable {
         } catch (Connect4DAOException e) {
             e.printStackTrace();
         }
-
-        try {
-            conecta4.createDemoData(1,1,1);
-        } catch (Connect4DAOException e) {
-            e.printStackTrace();
-        }
     }
 
     // Metodo unico encargado de la ejecucion de los botones LogIn y Register
