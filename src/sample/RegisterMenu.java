@@ -26,6 +26,7 @@ import java.util.ResourceBundle;
 
 
 public class RegisterMenu implements Initializable {
+
     @FXML
     private VBox formularioInicioDeSesion;
     @FXML
@@ -53,9 +54,9 @@ public class RegisterMenu implements Initializable {
     @FXML
     private Label mensajeDeErrorDeInicioDeSesion;
 
+
     // Creacion de Objetos de las librerias para poder acceder a los metodos
     // A parte decir que el jugador será relevante para el LogIn y Registro
-
 
     Player Jugador1;
     Player Jugador2;
@@ -84,7 +85,6 @@ public class RegisterMenu implements Initializable {
         }
 
         llamaMetodosPlayer = conecta4.getPlayer("nickName1");
-
 
         Text mensaje_de_contrasena = new Text("¿Has olvidado tu contraseña?");
         mensaje_de_contrasena.setUnderline(true);
@@ -130,25 +130,18 @@ public class RegisterMenu implements Initializable {
         });
     }
 
-    // Metodo unico encargado de la ejecucion de los botones LogIn y Register
     @FXML
     protected void InicioSesion(ActionEvent event) {
 
-        // Sino     Cambio de VBox de Registro a Inicio sesion
+
         formularioRegistro.setVisible(false);
         formularioInicioDeSesion.setVisible(true);
-
-        usuarioNombreRegistro = usuarioRegistro.getText();
-        usuarioContrasenaRegistro = contrasenaRegistro.getText();
-        usuarioCorreoRegistro = correoRegistro.getText();
-        nacimiento = fechaNacimientoRegistro.getValue();
 
         ingresoRellenado = (usuarioInicioSesion.getLength() != 0 && contrasenaInicioSesion.getLength() != 0);
 
 
-        if (ingresoRellenado) {                      //          Formulario de Inicio sesion cumplimentado + Click
+        if (ingresoRellenado) {
 
-            System.out.println("check");
             if (llamaMetodosPlayer.checkCredentials(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText())) {
                 try {
                     Jugador1 = conecta4.loginPlayer(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText());
@@ -163,12 +156,11 @@ public class RegisterMenu implements Initializable {
         }
     }
 
-
     @FXML
     public void Registro(ActionEvent event) throws IOException {
 
 
-        formularioRegistro.setVisible(true);                                    // Sino     Cambio de VBox de Registro a Inicio sesion
+        formularioRegistro.setVisible(true);
         formularioInicioDeSesion.setVisible(false);
 
         // Declaracion de todos los datos almacenados en los input
@@ -180,33 +172,31 @@ public class RegisterMenu implements Initializable {
         // Simplificacion de las condiciones para saber si se está rellenando el formulario
         registroRellenado = (usuarioRegistro.getLength() != 0 && contrasenaRegistro.getLength() != 0 && correoRegistro.getLength() != 0 && fechaNacimientoRegistro.getValue() != null);
 
-        if (formularioRegistro.isVisible()) {                                       // Si   Visible el formulario de Registro
-            if (registroRellenado) {                       //          Formulario de Registro cumplimentado + Click
+        if (formularioRegistro.isVisible()) {
 
-                if (!Player.checkNickName(usuarioNombreRegistro)) {
-                    mensajeDeErrorDeRegistro.setText("Nombre de usuario no valido\nEl nombre de usuario debe tener entre 6 y 15 caracteres, contener letras mayusculas\nminusculas o _ y -");
-                } else if (!Player.checkPassword(usuarioContrasenaRegistro)) {
-                    mensajeDeErrorDeRegistro.setText("La contraseña no es valida\nuna contraseña valida debe tener entre 8 y 20 caracteres\nal menos una letra mayuscula y minuscula\nal menos un digito\ny contener un caracter especial como ª@#$%&()-+=");
-                } else if (!Player.checkEmail(usuarioCorreoRegistro)) {
-                    mensajeDeErrorDeRegistro.setText("Correo no valido");
-                } else if (!(LocalDate.now().minusYears(nacimiento.getYear()).getYear() >= 18)) {
-                    mensajeDeErrorDeRegistro.setText("Debe ser mayor a 18 años");
-                } else if (!llamaMetodosPlayer.checkCredentials(usuarioNombreRegistro, usuarioContrasenaRegistro)) {
-                    try {
-                        Jugador1 = conecta4.registerPlayer(usuarioNombreRegistro, usuarioCorreoRegistro, usuarioContrasenaRegistro, nacimiento, 0);
-                    } catch (Connect4DAOException e) {
-                        e.printStackTrace();
-                    }
-
-                    Main.setRoot("Tablero");
+            if (!Player.checkNickName(usuarioNombreRegistro)) {
+                mensajeDeErrorDeRegistro.setText("Nombre de usuario no valido\nEl nombre de usuario debe tener entre 6 y 15 caracteres, contener letras mayusculas\nminusculas o _ y -");
+            } else if (!Player.checkPassword(usuarioContrasenaRegistro)) {
+                mensajeDeErrorDeRegistro.setText("La contraseña no es valida\nuna contraseña valida debe tener entre 8 y 20 caracteres\nal menos una letra mayuscula y minuscula\nal menos un digito\ny contener un caracter especial como ª@#$%&()-+=");
+            } else if (!Player.checkEmail(usuarioCorreoRegistro)) {
+                mensajeDeErrorDeRegistro.setText("Correo no valido");
+            } else if (!(LocalDate.now().minusYears(nacimiento.getYear()).getYear() >= 18)) {
+                mensajeDeErrorDeRegistro.setText("Debe ser mayor a 18 años");
+            } else if (!llamaMetodosPlayer.checkCredentials(usuarioNombreRegistro, usuarioContrasenaRegistro)) {
+                try {
+                    Jugador1 = conecta4.registerPlayer(usuarioNombreRegistro, usuarioCorreoRegistro, usuarioContrasenaRegistro, nacimiento, 0);
+                } catch (Connect4DAOException e) {
+                    e.printStackTrace();
                 }
+
+                Main.setRoot("Tablero");
             }
         }
     }
 
 
     public void borrarJugador1() {
-        Jugador2 = null;
+        Jugador1 = null;
     }
 
     public void borrarJugador2() {
@@ -217,12 +207,12 @@ public class RegisterMenu implements Initializable {
         return Jugador1;
     }
 
-    public void setJugador2(String nombre, String contrasena) {
-        Jugador2 = conecta4.loginPlayer(nombre, contrasena);
-    }
-
     public Player getJugador2() {
         return Jugador2;
+    }
+
+    public void setJugador2(String nombre, String contrasena) {
+        Jugador2 = conecta4.loginPlayer(nombre, contrasena);
     }
 
 
@@ -232,7 +222,7 @@ public class RegisterMenu implements Initializable {
         contrasenaInicioSesion.clear();
         contrasenaRegistro.clear();
         correoRegistro.clear();
-        //fechaNacimientoRegistro.
+        fechaNacimientoRegistro.getEditor().clear();
 
     }
 }

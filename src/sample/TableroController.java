@@ -224,7 +224,7 @@ public class TableroController implements Initializable {
 
 
     /** Metodo que saca una ventana emergente una vez que un jugador saque una combinacion de 4 **/
-    private void juegoFinalizado(){
+    private void juegoFinalizado() {
 
         String ganador = turnoJugador ? jugadorUno : jugadorDos;
         System.out.println("Ganador es: " + ganador);
