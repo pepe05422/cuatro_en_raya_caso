@@ -11,7 +11,6 @@ import java.io.IOException;
 public class Main extends Application {
 
     private static Scene Escena;
-    //private static TableroController tablero;
 
     // Este metodo permite cargar el FXML unicamente pasando como parametro el nombre del
     // archivo sin necesidad de la extension
