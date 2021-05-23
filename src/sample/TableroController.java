@@ -59,8 +59,11 @@ public class TableroController implements Initializable {
     /** Metodo controlador del tablero generado en la parte izquierda de la ventana **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
 
+    }
+
+    public void iniciarModoJuego() {
+        espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
         pantallaPrincipal.add(espacioJuegoTablero, 0, 1); //Añadimos a "pantallaPrincipal" -> GridPane el objeto anterior en la posicion (0, 1)
 
         List<Rectangle> recuadrosTablero = resaltarColumnas(); //Creamos una lista de objetos tipo Rectangle y las asociamos la metodo "resaltarColumnas()" en el bucle añadimos recuadro a cada posicion
@@ -101,7 +104,7 @@ public class TableroController implements Initializable {
             recuadro.setFill(Color.TRANSPARENT);
             recuadro.setTranslateX(j * (radio + 5) + radio*2);
 
-            recuadro.setOnMouseEntered(event -> recuadro.setFill(Color.valueOf("#eeeeee66"))); /** CAMBIAR OPACIDAD **/
+            recuadro.setOnMouseEntered(event -> recuadro.setFill(Color.rgb(243, 189, 161, 0.2)));
             recuadro.setOnMouseExited(event -> recuadro.setFill(Color.TRANSPARENT));
 
             final int columna=j; //because of lambda expression
@@ -269,10 +272,14 @@ public class TableroController implements Initializable {
     @FXML public void modoMultijugadorLocal(ActionEvent actionEvent) throws IOException {
         if (modoMulti.isArmed()) {
             try {
+                modoEspera.setVisible(false);
+                espacioJuego.setVisible(true);
+                espacioJuego.setOpacity(1.0);
                 modoAntesJuego.setVisible(false);
                 menuJuego.setVisible(true);
                 turnoAI = false;
                 gameMode.setText("Multijugador");
+                iniciarModoJuego();
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
@@ -283,11 +290,15 @@ public class TableroController implements Initializable {
     @FXML public void modoMultijugadorIA(ActionEvent event) throws IOException {
         if (modoIA.isArmed()) {
             try {
+                modoEspera.setVisible(false);
+                espacioJuego.setVisible(true);
+                espacioJuego.setOpacity(1.0);
                 modoAntesJuego.setVisible(false);
                 menuJuego.setVisible(true);
                 gameMode.setText("Ordenador");
                 turnoAI = true;
                 insertarFichaAI();
+                iniciarModoJuego();
             } catch (NullPointerException | InterruptedException e) {
                 e.printStackTrace();
             }

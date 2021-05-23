@@ -23,14 +23,14 @@
         <RowConstraints maxHeight="386.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="386.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
     </rowConstraints>
-    <Pane fx:id="espacioJuego" GridPane.rowIndex="1" />
-    <VBox fx:id="modoEspera" alignment="CENTER" style="-fx-background-color: #687980;" visible="false" GridPane.rowIndex="1">
+    <VBox fx:id="modoEspera" alignment="CENTER" style="-fx-background-color: #687980;" GridPane.rowIndex="1">
         <Label prefHeight="44.0" prefWidth="666.0" text="Siga las instrucciones de derecha para jugar" textFill="#eeeeee">
             <font>
                 <Font size="36.0" />
             </font>
         </Label>
     </VBox>
+    <Pane fx:id="espacioJuego" disable="true" opacity="0.0" visible="false" GridPane.rowIndex="1" />
     <VBox fx:id="modoAntesJuego" alignment="CENTER" style="-fx-background-color: #02475e;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
         <GridPane.margin>
             <Insets />
