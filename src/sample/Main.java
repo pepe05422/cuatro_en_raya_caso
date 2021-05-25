@@ -26,7 +26,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Escena = new Scene(loadFXML("RegisterMenu"),1200, 800);
+        Escena = new Scene(loadFXML("RegisterMenu"),900, 600);
         primaryStage.setScene(Escena);
         primaryStage.show();
         primaryStage.setMinHeight(800); // ***Hay que ajustar la altura minima

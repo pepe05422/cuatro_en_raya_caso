@@ -1,14 +1,22 @@
-# cuatro_en_raya_caso
+# Cuatro en raya
 
-**Tabla de requisitos**
-[TOCM]
+## Lista de funcionalidades a completar
 
-[TOC]
+- [x] Registrarse en el juego
+- [x] Autenticarse (Iniciar sesión)
+- [x] Cerrar Sesión
+- [ ] Jugar contra la máquina
+- [x] Jugar contra otro jugador
+- [ ] Modificar perfil
+- [ ] Recordar datos de autenticación
+- [ ] Mostrar ranking
+- [ ] Ver las partidas realizadas en el sistema en un periodo de tiempo
+- [ ] Ver las partidas realizadas por un jugador en un periodo de tiempo
+- [ ] Ver las partidas ganadas por un jugador en un periodo de tiempo
+- [ ] Ver las partidas perdidas por un jugador en un periodo de tiempo
+- [ ] Ver el número de partidas realizadas en un periodo de tiempo
+- [ ] Ver el numero de partidas ganadas/perdidas por un jugador en un periodo de tiempo
+- [ ] Cambiar en modo de visualización (Tema claro/oscuro)
 
-#Tablero de 7 filas y 8 columnas (Redimensionable)
-#Modos de juego:
-##Multijugador Local
-##Individual vs IA
-#Ranking de puntos
-#Crear, modificar y eliminar perfil de jugador
-#Recuperar contraseña a través de correo electronico
+> Este proyecto está desarrollado en IntelliJ
+> con el JDK Amazon coretto 1.8.202
