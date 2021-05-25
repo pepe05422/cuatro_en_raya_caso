@@ -1,7 +1,6 @@
 package sample;
 
 import DBAccess.Connect4DAOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -13,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
@@ -58,9 +58,9 @@ public class RegisterMenu implements Initializable {
     // Creacion de Objetos de las librerias para poder acceder a los metodos
     // A parte decir que el jugador será relevante para el LogIn y Registro
 
-    Player Jugador1;
-    Player Jugador2;
-    Player llamaMetodosPlayer;
+    static Player Jugador1;
+    static Player Jugador2;
+    static Player llamaMetodosPlayer;
 
     boolean registroRellenado;
     boolean ingresoRellenado;
@@ -71,7 +71,8 @@ public class RegisterMenu implements Initializable {
 
     LocalDate nacimiento;
 
-    Connect4 conecta4;
+
+    static Connect4 conecta4;
 
 
     @Override
@@ -92,7 +93,6 @@ public class RegisterMenu implements Initializable {
 
         recuperarContrasena.setOnMouseClicked(ev -> {
             if (ev.getTarget() instanceof Text) {
-                Text clicked = (Text) ev.getTarget();
                 StackPane recuperar = new StackPane();
 
                 TextField usuario = new TextField();
@@ -114,7 +114,6 @@ public class RegisterMenu implements Initializable {
                 correo.setPromptText("Correo electronico");
                 enviar.setText("Enviar");
 
-
                 Scene recuperarContrasenaEscena = new Scene(recuperar, 300, 180);
 
                 Stage nuevaVentana = new Stage();
@@ -126,21 +125,30 @@ public class RegisterMenu implements Initializable {
                 nuevaVentana.setMinWidth(300);
 
                 nuevaVentana.show();
+
+                enviar.setOnMouseClicked(event -> {
+                    Label mensaje = new Label();
+                    mensaje.setTextFill(Color.RED);
+                    mensaje.setText("Correo enviado");
+                    cajaVertical.getChildren().add(mensaje);
+                });
+
             }
         });
     }
 
     @FXML
-    protected void InicioSesion(ActionEvent event) {
+    protected void InicioSesion() {
 
 
         formularioRegistro.setVisible(false);
         formularioInicioDeSesion.setVisible(true);
+        resetearCamposRegistro();
 
         ingresoRellenado = (usuarioInicioSesion.getLength() != 0 && contrasenaInicioSesion.getLength() != 0);
 
 
-        if (ingresoRellenado) {
+        if (ingresoRellenado && formularioInicioDeSesion.isVisible()) {
 
             if (llamaMetodosPlayer.checkCredentials(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText())) {
                 try {
@@ -157,13 +165,13 @@ public class RegisterMenu implements Initializable {
     }
 
     @FXML
-    public void Registro(ActionEvent event) throws IOException {
-
+    public void Registro() throws IOException {
 
         formularioRegistro.setVisible(true);
         formularioInicioDeSesion.setVisible(false);
+        resetearCamposInicioSesion();
 
-        // Declaracion de todos los datos almacenados en los input
+        // Declaracion de todos los datos almacenados en los inputresetearCamposInicioSesion();
         usuarioNombreRegistro = usuarioRegistro.getText();
         usuarioContrasenaRegistro = contrasenaRegistro.getText();
         usuarioCorreoRegistro = correoRegistro.getText();
@@ -172,7 +180,7 @@ public class RegisterMenu implements Initializable {
         // Simplificacion de las condiciones para saber si se está rellenando el formulario
         registroRellenado = (usuarioRegistro.getLength() != 0 && contrasenaRegistro.getLength() != 0 && correoRegistro.getLength() != 0 && fechaNacimientoRegistro.getValue() != null);
 
-        if (formularioRegistro.isVisible()) {
+        if (registroRellenado && formularioRegistro.isVisible()) {
 
             if (!Player.checkNickName(usuarioNombreRegistro)) {
                 mensajeDeErrorDeRegistro.setText("Nombre de usuario no valido\nEl nombre de usuario debe tener entre 6 y 15 caracteres, contener letras mayusculas\nminusculas o _ y -");
@@ -203,23 +211,26 @@ public class RegisterMenu implements Initializable {
         Jugador2 = null;
     }
 
-    public Player getJugador1() {
+    public static Player getJugador1() {
         return Jugador1;
     }
 
-    public Player getJugador2() {
+    public static Player getJugador2() {
         return Jugador2;
     }
 
-    public void setJugador2(String nombre, String contrasena) {
+    public static void setJugador2(String nombre, String contrasena) {
         Jugador2 = conecta4.loginPlayer(nombre, contrasena);
     }
 
 
-    public void resetFields() {
+    public void resetearCamposInicioSesion() {
         usuarioInicioSesion.clear();
-        usuarioRegistro.clear();
         contrasenaInicioSesion.clear();
+    }
+
+    public void resetearCamposRegistro() {
+        usuarioRegistro.clear();
         contrasenaRegistro.clear();
         correoRegistro.clear();
         fechaNacimientoRegistro.getEditor().clear();
