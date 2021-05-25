@@ -346,6 +346,7 @@ public class TableroController implements Initializable {
     public void cerrarSesion(ActionEvent event) throws IOException {
         if (cerrarSesion.isArmed() || cerrarSesion2.isArmed()) {
             try {
+                cerrarSesion.setDisable(false);
                 RegisterMenu jugador = new RegisterMenu();
                 jugador.borrarJugador1();
                 jugador.borrarJugador2();
@@ -356,10 +357,16 @@ public class TableroController implements Initializable {
         }
     }
 
+    /**
+     * Definir el nombre del jugador mediante un metodo set, dado que es un atributo estatico
+     **/
     public void setJugadorDos(String name) {
         jugadorDos = name;
     }
 
+    /**
+     * Inicio sesion de jugador 2
+     **/
     @FXML
     public void inicioSesionJugador2() {
         StackPane inicioSesion = new StackPane();
@@ -412,7 +419,7 @@ public class TableroController implements Initializable {
             if (RegisterMenu.llamaMetodosPlayer.checkCredentials(usuario.getText(), contrasena.getText())) {
                 RegisterMenu.setJugador2(usuario.getText(), contrasena.getText());
                 setJugadorDos(RegisterMenu.getJugador2().getNickName());
-                    nuevaVentana.close();
+                nuevaVentana.close();
                 mensaje.setText("Inicio de sesion satisfactorio");
             } else {
                 mensaje.setText("Usuario o contraseña incorrectos");
