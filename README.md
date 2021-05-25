@@ -1,6 +1,6 @@
 # Cuatro en raya
 
-## Lista de funcionalidades a completar
+## Lista de funcionalidades a completar:
 
 - [x] Registrarse en el juego
 - [x] Autenticarse (Iniciar sesión)
@@ -19,4 +19,4 @@
 - [ ] Cambiar en modo de visualización (Tema claro/oscuro)
 
 > Este proyecto está desarrollado en IntelliJ
-> con el JDK Amazon coretto 1.8.202
+> con el JDK Amazon coretto 8.0.202
