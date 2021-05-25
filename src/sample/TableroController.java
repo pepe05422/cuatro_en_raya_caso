@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -33,7 +34,7 @@ public class TableroController implements Initializable {
     private Ficha [][] tablero = new Ficha[filas][columnas];
 
     private boolean turnoJugador = true;
-    private boolean turnoAI = true;
+    private boolean turnoAI = false;
 
     private static String jugadorUno = "Jug1";
     private static String jugadorDos = "Jug2";
@@ -58,8 +59,11 @@ public class TableroController implements Initializable {
     /** Metodo controlador del tablero generado en la parte izquierda de la ventana **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
 
+    }
+
+    public void iniciarModoJuego() {
+        espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
         pantallaPrincipal.add(espacioJuegoTablero, 0, 1); //Añadimos a "pantallaPrincipal" -> GridPane el objeto anterior en la posicion (0, 1)
 
         List<Rectangle> recuadrosTablero = resaltarColumnas(); //Creamos una lista de objetos tipo Rectangle y las asociamos la metodo "resaltarColumnas()" en el bucle añadimos recuadro a cada posicion
@@ -75,7 +79,7 @@ public class TableroController implements Initializable {
     /** Metodo para dibujar o formar la rejilla del tablero **/
     private Shape dibujarGridTablero() {
 
-        Shape espacioJuegoTablero = new Rectangle((columnas+4)*radio, (filas+4)*radio); //
+        Shape espacioJuegoTablero = new Rectangle((columnas+4)*radio, (filas+4)*radio);
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
@@ -89,7 +93,7 @@ public class TableroController implements Initializable {
                 espacioJuegoTablero = Shape.subtract(espacioJuegoTablero, circulo);
             }
         }
-        espacioJuegoTablero.setFill(Color.rgb(104, 121, 128));
+        espacioJuegoTablero.setFill(Color.TRANSPARENT);
         return espacioJuegoTablero;
     }
 
@@ -100,14 +104,21 @@ public class TableroController implements Initializable {
             recuadro.setFill(Color.TRANSPARENT);
             recuadro.setTranslateX(j * (radio + 5) + radio*2);
 
-            recuadro.setOnMouseEntered(event -> recuadro.setFill(Color.valueOf("#eeeeee66")));
+            recuadro.setOnMouseEntered(event -> recuadro.setFill(Color.rgb(243, 189, 161, 0.2)));
             recuadro.setOnMouseExited(event -> recuadro.setFill(Color.TRANSPARENT));
 
             final int columna=j; //because of lambda expression
             recuadro.setOnMouseClicked(event -> {
                 if (puedoInsertar) {
                     puedoInsertar = true;
-                    insertarFicha(new Ficha(turnoJugador), columna);
+                    try {
+                        insertarFicha(new Ficha(turnoJugador), columna);
+                        System.out.println(turnoAI);
+
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             });
@@ -118,19 +129,26 @@ public class TableroController implements Initializable {
     }
 
     /** Insertado de fichas por Inteligencia Artificial **/
-    private void insertarFichaAI() {
+    private void insertarFichaAI() throws InterruptedException {
         int col;
+        int fila = filas - 1;
+        System.out.println("Fila " + fila);
+        col = ((int) (Math.random() * columnas));
+        if (!turnoJugador && turnoAI) {
+            while ((fichaDisponible(fila, col) == null) && turnoAI && !turnoJugador) {
+                System.out.println("Espacio disponible");
+                turnoAI = !turnoAI;
+                insertarFicha(new Ficha(turnoAI), col);
+                turnoJugador = !turnoJugador;
+                fila--;
 
-        if (turnoAI) {
-            col = ((int) Math.random() * columnas);
-
-            insertarFicha(new Ficha(turnoAI), col);
-
+                insertarFichaAI();
+            }
         }
 
     }
 
-    private void insertarFicha(Ficha ficha, int columna) {
+    private void insertarFicha(Ficha ficha, int columna) throws InterruptedException {
 
         int fila = filas - 1;
         while (fila >= 0) {
@@ -145,10 +163,10 @@ public class TableroController implements Initializable {
         }
         tablero[fila][columna] = ficha;
         espacioJuego.getChildren().add(ficha);
-        ficha.setTranslateX(columna * (radio + 5) + radio*2);
+        ficha.setTranslateX(columna * (radio + 5) + radio * 2);
 
         int filaActual = fila;
-        TranslateTransition transicion = new TranslateTransition(Duration.seconds(0.4), ficha);
+        TranslateTransition transicion = new TranslateTransition(Duration.seconds(0.15), ficha);
         transicion.setToY(fila * (radio + 5) + radio*2);
 
         transicion.setOnFinished(event -> {
@@ -160,12 +178,25 @@ public class TableroController implements Initializable {
             }
 
             turnoJugador = !turnoJugador;
+            turnoAI = !turnoAI;
+            
+            if (turnoAI) {
+                try {
+                    insertarFichaAI();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
 
             gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
 
         });
 
         transicion.play();
+        // INPUT LAG**
+        TimeUnit.MILLISECONDS.sleep(125);
 
     }
     private boolean juegoTerminado(int fila, int columna) {
@@ -262,10 +293,14 @@ public class TableroController implements Initializable {
     @FXML public void modoMultijugadorLocal(ActionEvent actionEvent) throws IOException {
         if (modoMulti.isArmed()) {
             try {
+                modoEspera.setVisible(false);
+                espacioJuego.setVisible(true);
+                espacioJuego.setOpacity(1.0);
                 modoAntesJuego.setVisible(false);
                 menuJuego.setVisible(true);
                 turnoAI = false;
                 gameMode.setText("Multijugador");
+                iniciarModoJuego();
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
@@ -276,12 +311,17 @@ public class TableroController implements Initializable {
     @FXML public void modoMultijugadorIA(ActionEvent event) throws IOException {
         if (modoIA.isArmed()) {
             try {
+                modoEspera.setVisible(false);
+                espacioJuego.setVisible(true);
+                espacioJuego.setOpacity(1.0);
                 modoAntesJuego.setVisible(false);
                 menuJuego.setVisible(true);
                 gameMode.setText("Ordenador");
                 turnoAI = true;
+                turnoJugador = false;
+                iniciarModoJuego();
                 insertarFichaAI();
-            } catch (NullPointerException e) {
+            } catch (NullPointerException | InterruptedException e) {
                 e.printStackTrace();
             }
 
