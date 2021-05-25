@@ -34,7 +34,7 @@ public class TableroController implements Initializable {
     private Ficha [][] tablero = new Ficha[filas][columnas];
 
     private boolean turnoJugador = true;
-    private boolean turnoAI = true;
+    private boolean turnoAI = false;
 
     private static String jugadorUno = "Jug1";
     private static String jugadorDos = "Jug2";
@@ -113,6 +113,9 @@ public class TableroController implements Initializable {
                     puedoInsertar = true;
                     try {
                         insertarFicha(new Ficha(turnoJugador), columna);
+                        System.out.println(turnoAI);
+
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -128,12 +131,19 @@ public class TableroController implements Initializable {
     /** Insertado de fichas por Inteligencia Artificial **/
     private void insertarFichaAI() throws InterruptedException {
         int col;
+        int fila = filas - 1;
+        System.out.println("Fila " + fila);
+        col = ((int) (Math.random() * columnas));
+        if (!turnoJugador && turnoAI) {
+            while ((fichaDisponible(fila, col) == null) && turnoAI && !turnoJugador) {
+                System.out.println("Espacio disponible");
+                turnoAI = !turnoAI;
+                insertarFicha(new Ficha(turnoAI), col);
+                turnoJugador = !turnoJugador;
+                fila--;
 
-        if (turnoAI) {
-            col = ((int) Math.random() * columnas);
-
-            insertarFicha(new Ficha(turnoAI), col);
-
+                insertarFichaAI();
+            }
         }
 
     }
@@ -153,7 +163,7 @@ public class TableroController implements Initializable {
         }
         tablero[fila][columna] = ficha;
         espacioJuego.getChildren().add(ficha);
-        ficha.setTranslateX(columna * (radio + 5) + radio*2);
+        ficha.setTranslateX(columna * (radio + 5) + radio * 2);
 
         int filaActual = fila;
         TranslateTransition transicion = new TranslateTransition(Duration.seconds(0.15), ficha);
@@ -168,6 +178,17 @@ public class TableroController implements Initializable {
             }
 
             turnoJugador = !turnoJugador;
+            turnoAI = !turnoAI;
+            
+            if (turnoAI) {
+                try {
+                    insertarFichaAI();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
 
             gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
 
@@ -297,8 +318,9 @@ public class TableroController implements Initializable {
                 menuJuego.setVisible(true);
                 gameMode.setText("Ordenador");
                 turnoAI = true;
-                insertarFichaAI();
+                turnoJugador = false;
                 iniciarModoJuego();
+                insertarFichaAI();
             } catch (NullPointerException | InterruptedException e) {
                 e.printStackTrace();
             }
