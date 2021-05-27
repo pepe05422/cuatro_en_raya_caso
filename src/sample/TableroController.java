@@ -40,6 +40,7 @@ public class TableroController implements Initializable {
     private static String jugadorDos = "Jug2";
 
     private boolean puedoInsertar = true;
+    private boolean instertarAI = false;
 
     private Shape espacioJuegoTablero;
 
@@ -62,6 +63,7 @@ public class TableroController implements Initializable {
 
     }
 
+    /** Metodo que cambia la pantalla de la izquierda una vez se elige el modo de juego **/
     public void iniciarModoJuego() {
         espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
         pantallaPrincipal.add(espacioJuegoTablero, 0, 1); //Añadimos a "pantallaPrincipal" -> GridPane el objeto anterior en la posicion (0, 1)
@@ -73,7 +75,6 @@ public class TableroController implements Initializable {
 
         gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
     }
-
 
 
     /** Metodo para dibujar o formar la rejilla del tablero **/
@@ -97,6 +98,7 @@ public class TableroController implements Initializable {
         return espacioJuegoTablero;
     }
 
+    /** Metodo que selecciona la columna y llama al metodo de inserción de ficha por evento de Click **/
     private List<Rectangle> resaltarColumnas() {
         List<Rectangle> recuadrosTablero=new ArrayList<>();
         for (int j = 0; j < columnas; j++){
@@ -113,7 +115,6 @@ public class TableroController implements Initializable {
                     puedoInsertar = true;
                     try {
                         insertarFicha(new Ficha(turnoJugador), columna);
-                        System.out.println(turnoAI);
 
 
                     } catch (InterruptedException e) {
@@ -128,28 +129,69 @@ public class TableroController implements Initializable {
         return recuadrosTablero;
     }
 
-    /** Insertado de fichas por Inteligencia Artificial **/
-    private void insertarFichaAI() throws InterruptedException {
-        int col;
-        int fila = filas - 1;
-        System.out.println("Fila " + fila);
-        col = ((int) (Math.random() * columnas));
-        if (!turnoJugador && turnoAI) {
-            while ((fichaDisponible(fila, col) == null) && turnoAI && !turnoJugador) {
-                System.out.println("Espacio disponible");
-                turnoAI = !turnoAI;
-                insertarFicha(new Ficha(turnoAI), col);
-                turnoJugador = !turnoJugador;
-                fila--;
+    /** Metodo que inicia el insertado por Inteligencia Artificial **/
+    private void insertarAI() {
+        int colAI;
+        colAI = ((int) (Math.random() * columnas));
 
-                insertarFichaAI();
+        if (instertarAI) {
+            instertarAI = true;
+            try {
+                turnoAI = !turnoAI;
+                insertarFichaAI(new Ficha(turnoAI), colAI);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    /** Insertado de fichas por Inteligencia Artificial **/
+    private void insertarFichaAI(Ficha ficha, int columna) throws InterruptedException {
+        int fila = filas - 1;
+        while (fila >= 0) {
+            if (fichaDisponible(fila, columna) == null) {
+                break;
+            }
+            fila--;
+        }
+        if (fila < 0) {
+            System.out.println("No se pueden insertar mas fichas");
+            return;
+        }
+        tablero[fila][columna] = ficha;
+        espacioJuego.getChildren().add(ficha);
+        ficha.setTranslateX(columna * (radio + 5) + radio * 2);
+
+        int filaActual = fila;
+        TranslateTransition transicion = new TranslateTransition(Duration.seconds(0.15), ficha);
+        transicion.setToY(fila * (radio + 5) + radio*2);
+
+        transicion.setOnFinished(event -> {
+            instertarAI = true;
+
+            if (juegoTerminado(filaActual, columna )) {
+                juegoFinalizado();
+                return;
+            }
+
+            if (instertarAI == true) {
+                turnoJugador = true;
+                turnoAI = false;
+            }
+            gamePlayer.setText(turnoAI ? jugadorUno : jugadorDos);
+
+
+        });
+
+        transicion.play();
+        // INPUT LAG**
+        TimeUnit.MILLISECONDS.sleep(125);
 
     }
 
+    /** Insertado de fichas por Click **/
     private void insertarFicha(Ficha ficha, int columna) throws InterruptedException {
-
         int fila = filas - 1;
         while (fila >= 0) {
             if (fichaDisponible(fila, columna) == null) {
@@ -177,18 +219,16 @@ public class TableroController implements Initializable {
                 return;
             }
 
-            turnoJugador = !turnoJugador;
-            turnoAI = !turnoAI;
-            
-            if (turnoAI) {
-                try {
-                    insertarFichaAI();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            if (instertarAI == false && puedoInsertar == true) {
+                turnoJugador = !turnoJugador;
             }
 
 
+            if (turnoAI == false && instertarAI == true) {
+                turnoAI = !turnoAI;
+                turnoJugador = false;
+                insertarAI();
+            }
 
             gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
 
@@ -199,6 +239,7 @@ public class TableroController implements Initializable {
         TimeUnit.MILLISECONDS.sleep(125);
 
     }
+
     private boolean juegoTerminado(int fila, int columna) {
         List<Point2D> fichasVertical = IntStream.rangeClosed(fila - 3, fila + 3)
                 .mapToObj(f-> new Point2D(f, columna))
@@ -279,6 +320,7 @@ public class TableroController implements Initializable {
     }
 
 
+    /** Metodo que comprueba si una ficha puede ser insertada en un hueco determinado **/
     public  Ficha fichaDisponible(int fila, int columna) {
 
         if (fila >= filas || fila < 0 || columna >= columnas || columna < 0){
@@ -286,8 +328,6 @@ public class TableroController implements Initializable {
         }
         return tablero[fila][columna];
     }
-
-
 
     /** Controlador de botones de Modo de juego **/
     @FXML public void modoMultijugadorLocal(ActionEvent actionEvent) throws IOException {
@@ -298,7 +338,6 @@ public class TableroController implements Initializable {
                 espacioJuego.setOpacity(1.0);
                 modoAntesJuego.setVisible(false);
                 menuJuego.setVisible(true);
-                turnoAI = false;
                 gameMode.setText("Multijugador");
                 iniciarModoJuego();
             } catch (NullPointerException e) {
@@ -319,9 +358,10 @@ public class TableroController implements Initializable {
                 gameMode.setText("Ordenador");
                 turnoAI = true;
                 turnoJugador = false;
+                instertarAI = true;
                 iniciarModoJuego();
-                insertarFichaAI();
-            } catch (NullPointerException | InterruptedException e) {
+                insertarAI();
+            } catch (NullPointerException e) {
                 e.printStackTrace();
             }
 
