@@ -25,11 +25,13 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import model.Connect4;
+import model.Player;
 
 public class TableroController implements Initializable {
 
-    private static final int columnas = 7;
-    private static final int filas = 6;
+    private static final int columnas = 8;
+    private static final int filas = 7;
     private static final double radio = 80.0;
     private Ficha [][] tablero = new Ficha[filas][columnas];
 
@@ -63,8 +65,11 @@ public class TableroController implements Initializable {
 
     }
 
+
+
     /** Metodo que cambia la pantalla de la izquierda una vez se elige el modo de juego **/
     public void iniciarModoJuego() {
+
         espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
         pantallaPrincipal.add(espacioJuegoTablero, 0, 1); //Añadimos a "pantallaPrincipal" -> GridPane el objeto anterior en la posicion (0, 1)
 
