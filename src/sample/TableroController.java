@@ -1,5 +1,6 @@
 package sample;
 
+import DBAccess.Connect4DAOException;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -25,8 +26,6 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import model.Connect4;
-import model.Player;
 
 public class TableroController implements Initializable {
 
@@ -38,13 +37,15 @@ public class TableroController implements Initializable {
     private boolean turnoJugador = true;
     private boolean turnoAI = false;
 
-    private static String jugadorUno = "Jug1";
-    private static String jugadorDos = "Jug2";
+    private static String jugadorUno;
+    private static String jugadorDos;
 
     private boolean puedoInsertar = true;
     private boolean instertarAI = false;
 
     private Shape espacioJuegoTablero;
+
+
 
 
     @FXML
@@ -62,14 +63,24 @@ public class TableroController implements Initializable {
     /** Metodo controlador del tablero generado en la parte izquierda de la ventana **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /*try {
+            connect4 = Connect4.getSingletonConnect4();
+
+        } catch (Connect4DAOException e) {
+            e.printStackTrace();
+        }
+
+        RegisterMenu registro = new RegisterMenu();
+        jugadorUno = registro.Jugador1.getNickName();
+        System.out.println(jugadorUno);
+        jugadorDos = registro.Jugador2.getNickName();
+        jugadorDos = connect4.getPlayer(jugadorUno).getNickName();*/
 
     }
 
 
-
     /** Metodo que cambia la pantalla de la izquierda una vez se elige el modo de juego **/
     public void iniciarModoJuego() {
-
         espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
         pantallaPrincipal.add(espacioJuegoTablero, 0, 1); //Añadimos a "pantallaPrincipal" -> GridPane el objeto anterior en la posicion (0, 1)
 
