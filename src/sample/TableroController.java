@@ -374,6 +374,7 @@ public class TableroController implements Initializable {
                 RegisterMenu jugador = new RegisterMenu();
                 jugador.borrarJugador1();
                 jugador.borrarJugador2();
+                System.out.println("se vienen cositas");
                 Main.setRoot("RegisterMenu");
             } catch (IOException e) {
                 e.printStackTrace();
