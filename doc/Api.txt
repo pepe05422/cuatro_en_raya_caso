@@ -1,0 +1,41 @@
+Connect4 {
+	removeAllData();
+	registerPLayer(nickName, email, password, birthday, points);
+	registerPlayer(nickname, email, password, avatar, birthday, points);
+	existsNickname(nickName);
+	loginPlayer(nickName, password);
+	getPlayer(nickName);
+	(Round) regiterRound(timeStamp, winner, loser);
+	(ArrayList<Player>) getConnect4Ranking(); <- jugadores de mas a menos puntos
+	(ArrayList<Round>) getRoundsPlayer (player); <- partidas de viejo a nuevo
+	(ArrayList<Round>) getWinnedRoundPlayer(player); <- ""
+	(ArrayList<Round>) getLostRoundPlayer(player); <- ""
+	TreeMap<LocalDate,DayRank> getDayRanksPlayer(Player) <- computo de partidas ganadas y perdidas cada dia
+	TreeMap<LocalDate,List<Round>> getRoundsPerDay();
+	TreeMap<LocalDate,Integer> getPlayersCountPerDay();
+	TreeMap<LocalDate,Integer> getPlayersCountsPerDay();
+}
+
+Player {
+	plusPoints(plusPoints)
+	checkCredentials(nickName, password);
+	toString();
+	checkNickName(nickName);
+	checkEmail(email);
+	checkPassword(password);
+}
+
+Round {
+	LocalDateTime timeStamp: dia y hora en el que se registra la partida
+	Player winner: jugador ganador
+	Player loser: jugador perdedor
+
+	getters y setters pertinentes;
+}
+
+DayRank {
+	LocalDate date: dia para el que se han calculado los datos recogidos en el objeto
+	int winnedGames: partidas ganadas por el jugador en el dia date
+	int lostGames: partidas perdidas por el jugador en el dia date
+	int oponents: numero de oponentes diferentes contra los que jugó en dia date
+}
