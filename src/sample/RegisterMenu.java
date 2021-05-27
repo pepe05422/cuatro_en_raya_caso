@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -20,6 +21,9 @@ import javafx.stage.Stage;
 import model.Connect4;
 import model.Player;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -56,7 +60,7 @@ public class RegisterMenu implements Initializable {
     private Label mensajeDeErrorDeInicioDeSesion;
 
     @FXML
-    private ImageView avatar;
+    private ImageView ImgVwavatar;
 
     // Creacion de Objetos de las librerias para poder acceder a los metodos
     // A parte decir que el jugador será relevante para el LogIn y Registro
@@ -212,6 +216,25 @@ public class RegisterMenu implements Initializable {
         }
     }
 
+
+    public void cargarImagenLocal() {
+        String url = File.separator + "avatars" + File.separator + "avatar1.png";
+        Image avatar = new Image(url);
+        ImgVwavatar.imageProperty().setValue(avatar);
+    }
+
+    public void cargarImagenExterna() {
+        String url = "c:" + File.separator + "avatars" + File.separator + "avatar1.png";
+
+        Image avatar;
+        try {
+            avatar = new Image(new FileInputStream(url));
+            ImgVwavatar.imageProperty().setValue(avatar);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void borrarJugador1() {
         Jugador1 = null;
