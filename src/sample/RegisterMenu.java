@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -54,6 +55,8 @@ public class RegisterMenu implements Initializable {
     @FXML
     private Label mensajeDeErrorDeInicioDeSesion;
 
+    @FXML
+    private ImageView avatar;
 
     // Creacion de Objetos de las librerias para poder acceder a los metodos
     // A parte decir que el jugador será relevante para el LogIn y Registro
@@ -183,21 +186,28 @@ public class RegisterMenu implements Initializable {
         if (registroRellenado && formularioRegistro.isVisible()) {
 
             if (!Player.checkNickName(usuarioNombreRegistro)) {
-                mensajeDeErrorDeRegistro.setText("Nombre de usuario no valido\nEl nombre de usuario debe tener entre 6 y 15 caracteres, contener letras mayusculas\nminusculas o _ y -");
+                mensajeDeErrorDeRegistro.setText("Nombre de usuario no valido\nEl nombre de usuario debe tener entre 6 y 15 caracteres, contener letras mayusculas,\nminusculas o '_' y '-'");
             } else if (!Player.checkPassword(usuarioContrasenaRegistro)) {
-                mensajeDeErrorDeRegistro.setText("La contraseña no es valida\nuna contraseña valida debe tener entre 8 y 20 caracteres\nal menos una letra mayuscula y minuscula\nal menos un digito\ny contener un caracter especial como ª@#$%&()-+=");
+                mensajeDeErrorDeRegistro.setText("La contraseña no es valida\nuna contraseña valida debe tener entre 8 y 20 car�cteres\nal menos una letra mayuscula y minuscula\nal menos un digito\ny contener un caracter especial como !@#$%&()-+=");
             } else if (!Player.checkEmail(usuarioCorreoRegistro)) {
                 mensajeDeErrorDeRegistro.setText("Correo no valido");
             } else if (!(LocalDate.now().minusYears(nacimiento.getYear()).getYear() >= 18)) {
                 mensajeDeErrorDeRegistro.setText("Debe ser mayor a 18 años");
-            } else if (!llamaMetodosPlayer.checkCredentials(usuarioNombreRegistro, usuarioContrasenaRegistro)) {
-                try {
-                    Jugador1 = conecta4.registerPlayer(usuarioNombreRegistro, usuarioCorreoRegistro, usuarioContrasenaRegistro, nacimiento, 0);
-                } catch (Connect4DAOException e) {
-                    e.printStackTrace();
-                }
+            }
+            try {
+                if (!Connect4.getSingletonConnect4().exitsNickName(usuarioNombreRegistro)) {
+                    try {
+                        Jugador1 = conecta4.registerPlayer(usuarioNombreRegistro, usuarioCorreoRegistro, usuarioContrasenaRegistro, nacimiento, 0);
+                    } catch (Connect4DAOException e) {
+                        e.printStackTrace();
+                    }
 
-                Main.setRoot("Tablero");
+                    Main.setRoot("Tablero");
+                } else {
+                    mensajeDeErrorDeRegistro.setText("El usuario introducido ya existe");
+                }
+            } catch (Connect4DAOException e) {
+                e.printStackTrace();
             }
         }
     }

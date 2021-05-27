@@ -14,7 +14,7 @@ public class Main extends Application {
 
     // Este metodo permite cargar el FXML unicamente pasando como parametro el nombre del
     // archivo sin necesidad de la extension
-    private static Parent loadFXML(String fxml) throws IOException{
+    public static Parent loadFXML(String fxml) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }

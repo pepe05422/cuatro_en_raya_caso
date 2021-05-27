@@ -55,7 +55,7 @@ public class TableroController implements Initializable {
     @FXML
     public Label gameMode, gamePlayer;
     @FXML
-    public Button modoMulti, modoIA, cerrarSesion, cerrarSesion2, iniciarSesion;
+    public Button modoMulti, modoIA, cerrarSesion, cerrarSesion2, iniciarSesion, modificarPerfil;
 
 
     /**
@@ -362,6 +362,19 @@ public class TableroController implements Initializable {
      **/
     public void setJugadorDos(String name) {
         jugadorDos = name;
+    }
+
+    @FXML
+    public void modificarPerfil() {
+        try {
+            Scene modPerfil = new Scene(Main.loadFXML("ModifyProfile"));
+            Stage ventana = new Stage();
+            ventana.setScene(modPerfil);
+            ventana.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
