@@ -362,6 +362,7 @@ public class TableroController implements Initializable {
      **/
     public void setJugadorDos(String name) {
         jugadorDos = name;
+        System.out.println("testing");
     }
 
     @FXML
