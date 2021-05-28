@@ -48,7 +48,8 @@
             <HBox alignment="TOP_RIGHT" spacing="15.0">
                 <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
                         onAction="#inicioSesionJugador2" text="Inicio sesion Jug 2" textAlignment="CENTER"/>
-                <Button mnemonicParsing="false" onAction="#modificarPerfil" text="Modificar Perfil"/>
+                <Button mnemonicParsing="false" onAction="#modificarPerfil"
+                        text="Modificar Perfil"/>
             </HBox>
         </VBox>
         <Label prefHeight="44.0" prefWidth="229.0" text="Modo de juego" textFill="#eeeeee">
