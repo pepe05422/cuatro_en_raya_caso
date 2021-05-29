@@ -155,8 +155,9 @@ public class RegisterMenu implements Initializable {
         ingresoRellenado = (usuarioInicioSesion.getLength() != 0 && contrasenaInicioSesion.getLength() != 0);
 
 
-        if (ingresoRellenado && formularioInicioDeSesion.isVisible()) {
 
+        if (ingresoRellenado && formularioInicioDeSesion.isVisible()) {
+            llamaMetodosPlayer = conecta4.loginPlayer(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText());
             if (llamaMetodosPlayer.checkCredentials(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText())) {
                 try {
                     Jugador1 = conecta4.loginPlayer(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText());
@@ -190,29 +191,31 @@ public class RegisterMenu implements Initializable {
         if (registroRellenado && formularioRegistro.isVisible()) {
 
             if (!Player.checkNickName(usuarioNombreRegistro)) {
-                mensajeDeErrorDeRegistro.setText("Nombre de usuario no valido\nEl nombre de usuario debe tener entre 6 y 15 caracteres, contener letras mayusculas,\nminusculas o '_' y '-'");
+                mensajeDeErrorDeRegistro.setText("Nombre de usuario no valido\nEl nombre de usuario debe tener entre 6 y 15 caracteres, contener letras mayusculas,\nminusculas sin espacios\n en su lugar usar '_' o '-'");
             } else if (!Player.checkPassword(usuarioContrasenaRegistro)) {
                 mensajeDeErrorDeRegistro.setText("La contraseña no es valida\nuna contraseña valida debe tener entre 8 y 20 car�cteres\nal menos una letra mayuscula y minuscula\nal menos un digito\ny contener un caracter especial como !@#$%&()-+=");
             } else if (!Player.checkEmail(usuarioCorreoRegistro)) {
                 mensajeDeErrorDeRegistro.setText("Correo no valido");
             } else if (!(LocalDate.now().minusYears(nacimiento.getYear()).getYear() >= 18)) {
                 mensajeDeErrorDeRegistro.setText("Debe ser mayor a 18 años");
-            }
-            try {
-                if (!Connect4.getSingletonConnect4().exitsNickName(usuarioNombreRegistro)) {
-                    try {
-                        Jugador1 = conecta4.registerPlayer(usuarioNombreRegistro, usuarioCorreoRegistro, usuarioContrasenaRegistro, nacimiento, 0);
-                    } catch (Connect4DAOException e) {
-                        e.printStackTrace();
-                    }
+            } else {
+                try {
+                    if (!Connect4.getSingletonConnect4().exitsNickName(usuarioNombreRegistro)) {
+                        try {
+                            Jugador1 = conecta4.registerPlayer(usuarioNombreRegistro, usuarioCorreoRegistro, usuarioContrasenaRegistro, nacimiento, 0);
+                        } catch (Connect4DAOException e) {
+                            e.printStackTrace();
+                        }
 
-                    Main.setRoot("Tablero");
-                } else {
-                    mensajeDeErrorDeRegistro.setText("El usuario introducido ya existe");
+                        Main.setRoot("Tablero");
+                    } else {
+                        mensajeDeErrorDeRegistro.setText("El usuario introducido ya existe");
+                    }
+                } catch (Connect4DAOException e) {
+                    e.printStackTrace();
                 }
-            } catch (Connect4DAOException e) {
-                e.printStackTrace();
             }
+
         }
     }
 
