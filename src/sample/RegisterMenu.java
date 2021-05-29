@@ -155,7 +155,6 @@ public class RegisterMenu implements Initializable {
         ingresoRellenado = (usuarioInicioSesion.getLength() != 0 && contrasenaInicioSesion.getLength() != 0);
 
 
-
         if (ingresoRellenado && formularioInicioDeSesion.isVisible()) {
             llamaMetodosPlayer = conecta4.loginPlayer(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText());
             if (llamaMetodosPlayer.checkCredentials(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText())) {
