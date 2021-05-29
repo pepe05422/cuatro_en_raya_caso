@@ -52,7 +52,11 @@ public class TableroController implements Initializable {
     @FXML
     public Pane espacioJuego;
     @FXML
-    public VBox modoAntesJuego, menuJuego, modoEspera;
+    public VBox modoAntesJuego;
+    @FXML
+    public GridPane menuJuego;
+    @FXML
+    public GridPane modoEspera;
     @FXML
     public Label gameMode, gamePlayer;
     @FXML
@@ -68,11 +72,11 @@ public class TableroController implements Initializable {
     /** Metodo que cambia la pantalla de la izquierda una vez se elige el modo de juego **/
     public void iniciarModoJuego() {
         espacioJuegoTablero = dibujarGridTablero(); // Creamos un objeto tipo Shape
-        pantallaPrincipal.add(espacioJuegoTablero, 0, 1); //Añadimos a "pantallaPrincipal" -> GridPane el objeto anterior en la posicion (0, 1)
+        pantallaPrincipal.add(espacioJuegoTablero, 0, 0); //Añadimos a "pantallaPrincipal" -> GridPane el objeto anterior en la posicion (0, 1)
 
         List<Rectangle> recuadrosTablero = resaltarColumnas(); //Creamos una lista de objetos tipo Rectangle y las asociamos la metodo "resaltarColumnas()" en el bucle añadimos recuadro a cada posicion
         for (Rectangle recuadro:recuadrosTablero) {
-            pantallaPrincipal.add(recuadro, 0, 1);
+            pantallaPrincipal.add(recuadro, 0, 0);
         }
 
         gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);

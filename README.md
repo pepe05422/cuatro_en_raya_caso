@@ -5,10 +5,10 @@
 - [x] Registrarse en el juego
 - [x] Autenticarse (Iniciar sesión)
 - [x] Cerrar Sesión
-- [ ] Jugar contra la máquina
+- [x] Jugar contra la máquina
 - [x] Jugar contra otro jugador
-- [ ] Modificar perfil
-- [ ] Recordar datos de autenticación
+- [x] Modificar perfil
+- [x] Recordar datos de autenticación
 - [ ] Mostrar ranking
 - [ ] Ver las partidas realizadas en el sistema en un periodo de tiempo
 - [ ] Ver las partidas realizadas por un jugador en un periodo de tiempo

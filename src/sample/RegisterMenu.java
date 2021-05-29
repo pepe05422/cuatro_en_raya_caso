@@ -260,6 +260,7 @@ public class RegisterMenu implements Initializable {
     public void resetearCamposInicioSesion() {
         usuarioInicioSesion.clear();
         contrasenaInicioSesion.clear();
+        mensajeDeErrorDeInicioDeSesion.setText("");
     }
 
     public void resetearCamposRegistro() {
@@ -267,6 +268,6 @@ public class RegisterMenu implements Initializable {
         contrasenaRegistro.clear();
         correoRegistro.clear();
         fechaNacimientoRegistro.getEditor().clear();
-
+        mensajeDeErrorDeRegistro.setText("");
     }
 }
