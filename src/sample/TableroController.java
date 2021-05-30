@@ -50,7 +50,7 @@ public class TableroController implements Initializable {
 
 
     private static String nameJugadorUno = jugadorUno.getNickName();
-    private static String nameJugadorDos = "jugador2";
+    private static String nameJugadorDos = "ordenador";
 
     private boolean puedoInsertar = true;
     private boolean instertarAI = false;
@@ -336,8 +336,9 @@ public class TableroController implements Initializable {
 
         String ganador = turnoJugador ? nameJugadorUno : nameJugadorDos;
         System.out.println("Ganador es: " + ganador);
-
-        if (ganador.equals(jugadorUno.getNickName())) {
+        if (ganador.equals("ordenador")) {
+            System.out.println("Ganador: " + ganador);;
+        } else if (ganador.equals(jugadorUno.getNickName())) {
             LocalDateTime fecha = LocalDateTime.now();
             try {
                 RegisterMenu.conecta4.regiterRound(fecha, jugadorUno, jugadorDos);
