@@ -19,11 +19,8 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Player;
-import model.Round;
-
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -204,7 +201,7 @@ public class TableroController implements Initializable {
                 return;
             }
 
-            if (instertarAI == true) {
+            if (instertarAI) {
                 turnoJugador = true;
                 turnoAI = false;
             }
@@ -338,6 +335,8 @@ public class TableroController implements Initializable {
         System.out.println("Ganador es: " + ganador);
         if (ganador.equals("ordenador")) {
             System.out.println("Ganador: " + ganador);;
+        } else if(nameJugadorDos.equals("ordenador")) {
+            System.out.println("Has ganado bro");
         } else if (ganador.equals(jugadorUno.getNickName())) {
             LocalDateTime fecha = LocalDateTime.now();
             try {
@@ -418,6 +417,7 @@ public class TableroController implements Initializable {
                 turnoAI = true;
                 turnoJugador = false;
                 instertarAI = true;
+                nameJugadorDos = "ordenador";
                 iniciarModoJuego();
                 insertarAI();
             } catch (NullPointerException e) {
