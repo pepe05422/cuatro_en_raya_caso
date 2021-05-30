@@ -65,21 +65,21 @@ public class RegisterMenu implements Initializable {
     // Creacion de Objetos de las librerias para poder acceder a los metodos
     // A parte decir que el jugador será relevante para el LogIn y Registro
 
-    static Player Jugador1;
-    static Player Jugador2;
+    private static Player Jugador1;
+    private static Player Jugador2;
     static Player llamaMetodosPlayer;
 
-    boolean registroRellenado;
-    boolean ingresoRellenado;
+    private boolean registroRellenado;
+    private boolean ingresoRellenado;
 
-    String usuarioNombreRegistro;
-    String usuarioContrasenaRegistro;
-    String usuarioCorreoRegistro;
+    private String usuarioNombreRegistro;
+    private String usuarioContrasenaRegistro;
+    private String usuarioCorreoRegistro;
 
-    LocalDate nacimiento;
+    private LocalDate nacimiento;
 
 
-    static Connect4 conecta4;
+    public static Connect4 conecta4;
 
 
     @Override
@@ -156,10 +156,9 @@ public class RegisterMenu implements Initializable {
 
 
         if (ingresoRellenado && formularioInicioDeSesion.isVisible()) {
-            llamaMetodosPlayer = conecta4.loginPlayer(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText());
-            if (llamaMetodosPlayer.checkCredentials(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText())) {
+            Jugador1 = conecta4.loginPlayer(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText());
+            if (Jugador1.checkCredentials(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText())) {
                 try {
-                    Jugador1 = conecta4.loginPlayer(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText());
                     Main.setRoot("Tablero");
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -238,11 +237,11 @@ public class RegisterMenu implements Initializable {
 
     }
 
-    public void borrarJugador1() {
+    public static void borrarJugador1() {
         Jugador1 = null;
     }
 
-    public void borrarJugador2() {
+    public static void borrarJugador2() {
         Jugador2 = null;
     }
 

@@ -1,5 +1,6 @@
 package sample;
 
+import DBAccess.Connect4DAOException;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -17,9 +18,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Player;
+import model.Round;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,8 +43,14 @@ public class TableroController implements Initializable {
     private boolean turnoJugador = true;
     private boolean turnoAI = false;
 
-    private static String jugadorUno = RegisterMenu.getJugador1().getNickName();
-    private static String jugadorDos = "jugador2";
+
+
+    private static Player jugadorUno = RegisterMenu.getJugador1();
+    private static Player jugadorDos;
+
+
+    private static String nameJugadorUno = jugadorUno.getNickName();
+    private static String nameJugadorDos = "jugador2";
 
     private boolean puedoInsertar = true;
     private boolean instertarAI = false;
@@ -83,7 +94,7 @@ public class TableroController implements Initializable {
             pantallaPrincipal.add(recuadro, 0, 0);
         }
 
-        gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
+        gamePlayer.setText(turnoJugador ? nameJugadorUno : nameJugadorDos);
     }
 
 
@@ -197,7 +208,7 @@ public class TableroController implements Initializable {
                 turnoJugador = true;
                 turnoAI = false;
             }
-            gamePlayer.setText(turnoAI ? jugadorUno : jugadorDos);
+            gamePlayer.setText(turnoAI ? nameJugadorUno : nameJugadorDos);
 
 
         });
@@ -251,7 +262,7 @@ public class TableroController implements Initializable {
             }
 
 
-            gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
+            gamePlayer.setText(turnoJugador ? nameJugadorUno : nameJugadorDos);
 
         });
 
@@ -323,8 +334,24 @@ public class TableroController implements Initializable {
      **/
     private void juegoFinalizado() {
 
-        String ganador = turnoJugador ? jugadorUno : jugadorDos;
+        String ganador = turnoJugador ? nameJugadorUno : nameJugadorDos;
         System.out.println("Ganador es: " + ganador);
+
+        if (ganador.equals(jugadorUno.getNickName())) {
+            LocalDateTime fecha = LocalDateTime.now();
+            try {
+                RegisterMenu.conecta4.regiterRound(fecha, jugadorUno, jugadorDos);
+            } catch (Connect4DAOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            LocalDateTime fecha = LocalDateTime.now();
+            try {
+                RegisterMenu.conecta4.regiterRound(fecha, jugadorDos, jugadorUno);
+            } catch (Connect4DAOException e) {
+                e.printStackTrace();
+            }
+        }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Connect 4");
@@ -418,7 +445,7 @@ public class TableroController implements Initializable {
      * Definir el nombre del jugador mediante un metodo set, dado que es un atributo estatico
      **/
     public void setJugadorDos(String name) {
-        jugadorDos = name;
+        nameJugadorDos = name;
     }
 
     @FXML
@@ -486,12 +513,15 @@ public class TableroController implements Initializable {
 
         iniciarSesion.setOnMouseClicked(ev -> {
 
-            if (RegisterMenu.llamaMetodosPlayer.checkCredentials(usuario.getText(), contrasena.getText())) {
-                RegisterMenu.setJugador2(usuario.getText(), contrasena.getText());
-                setJugadorDos(RegisterMenu.getJugador2().getNickName());
+
+            RegisterMenu.setJugador2(usuario.getText(), contrasena.getText());
+            if (RegisterMenu.getJugador2().checkCredentials(usuario.getText(), contrasena.getText())) {
+                jugadorDos = RegisterMenu.getJugador2();
+                setJugadorDos(jugadorDos.getNickName());
                 nuevaVentana.close();
                 mensaje.setText("Inicio de sesion satisfactorio");
             } else {
+                RegisterMenu.borrarJugador2();
                 mensaje.setText("Usuario o contraseña incorrectos");
             }
             cajaVertical.getChildren().add(mensaje);
