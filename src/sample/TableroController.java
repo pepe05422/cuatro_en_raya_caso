@@ -3,7 +3,6 @@ package sample;
 import DBAccess.Connect4DAOException;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -11,7 +10,10 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -46,8 +48,7 @@ public class TableroController implements Initializable {
     private static Player jugadorDos;
 
 
-    private static String nameJugadorUno = "jugador1";
-    //private static String nameJugadorUno = jugadorUno.getNickName();
+    private static String nameJugadorUno = jugadorUno.getNickName();
     private static String nameJugadorDos = "ordenador";
 
     private boolean puedoInsertar = true;
@@ -125,9 +126,9 @@ public class TableroController implements Initializable {
     private List<Rectangle> resaltarColumnas() {
         List<Rectangle> recuadrosTablero = new ArrayList<>();
         for (int j = 0; j < columnas; j++) {
-            Rectangle recuadro = new Rectangle(radio, (filas + 4) * radio);
+            Rectangle recuadro = new Rectangle(radio, (filas + 4) * radio - 120);
             recuadro.setFill(Color.TRANSPARENT);
-            recuadro.setTranslateX(j * (radio + 5) + radio * 2);
+            recuadro.setTranslateX(j * (radio + 5) + radio * 2 - 120);
 
             recuadro.setOnMouseEntered(event -> recuadro.setFill(Color.rgb(243, 189, 161, 0.2)));
             recuadro.setOnMouseExited(event -> recuadro.setFill(Color.TRANSPARENT));
@@ -248,12 +249,12 @@ public class TableroController implements Initializable {
                 return;
             }
 
-            if (instertarAI == false && puedoInsertar == true) {
+            if (!instertarAI && puedoInsertar) {
                 turnoJugador = !turnoJugador;
             }
 
 
-            if (turnoAI == false && instertarAI == true) {
+            if (!turnoAI && instertarAI) {
                 turnoAI = !turnoAI;
                 turnoJugador = false;
                 insertarAI();
@@ -290,11 +291,9 @@ public class TableroController implements Initializable {
                 .collect(Collectors.toList());
 
 
-        boolean terminado = comprobarCombinacionCuatro(fichasVertical) || comprobarCombinacionCuatro(fichasHorizontal)
+        return comprobarCombinacionCuatro(fichasVertical) || comprobarCombinacionCuatro(fichasHorizontal)
                 || comprobarCombinacionCuatro(puntoDiagonal1)
                 || comprobarCombinacionCuatro(puntoDiagonal2);
-
-        return terminado;
     }
 
     /**
@@ -336,7 +335,6 @@ public class TableroController implements Initializable {
         System.out.println("Ganador es: " + ganador);
         if (ganador.equals("ordenador")) {
             System.out.println("Ganador: " + ganador);
-            ;
         } else if (nameJugadorDos.equals("ordenador")) {
             System.out.println("Has ganado bro");
         } else if (ganador.equals(jugadorUno.getNickName())) {
@@ -389,7 +387,7 @@ public class TableroController implements Initializable {
      * Controlador de botones de Modo de juego
      **/
     @FXML
-    public void modoMultijugadorLocal(ActionEvent actionEvent) throws IOException {
+    public void modoMultijugadorLocal() {
         if (modoMulti.isArmed()) {
             try {
                 modoEspera.setVisible(false);
@@ -407,7 +405,7 @@ public class TableroController implements Initializable {
     }
 
     @FXML
-    public void modoMultijugadorIA(ActionEvent event) throws IOException {
+    public void modoMultijugadorIA() {
         if (modoIA.isArmed()) {
             try {
                 modoEspera.setVisible(false);
@@ -430,12 +428,11 @@ public class TableroController implements Initializable {
     }
 
     @FXML
-    public void cerrarSesion(ActionEvent event) throws IOException {
+    public void cerrarSesion() {
         if (cerrarSesion.isArmed() || cerrarSesion2.isArmed()) {
             try {
-                RegisterMenu jugador = new RegisterMenu();
-                jugador.borrarJugador1();
-                jugador.borrarJugador2();
+                RegisterMenu.borrarJugador1();
+                RegisterMenu.borrarJugador2();
                 System.out.println("se vienen cositas");
                 Main.setRoot("RegisterMenu");
             } catch (IOException e) {
