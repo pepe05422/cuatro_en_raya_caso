@@ -19,6 +19,7 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Player;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -41,12 +42,12 @@ public class TableroController implements Initializable {
     private boolean turnoAI = false;
 
 
-
     private static Player jugadorUno = RegisterMenu.getJugador1();
     private static Player jugadorDos;
 
 
-    private static String nameJugadorUno = jugadorUno.getNickName();
+    private static String nameJugadorUno = "jugador1";
+    //private static String nameJugadorUno = jugadorUno.getNickName();
     private static String nameJugadorDos = "ordenador";
 
     private boolean puedoInsertar = true;
@@ -58,7 +59,7 @@ public class TableroController implements Initializable {
     @FXML
     public GridPane pantallaPrincipal;
     @FXML
-    public Pane espacioJuego;
+    public GridPane espacioJuego;
     @FXML
     public VBox modoAntesJuego;
     @FXML
@@ -237,7 +238,7 @@ public class TableroController implements Initializable {
 
         int filaActual = fila;
         TranslateTransition transicion = new TranslateTransition(Duration.seconds(0.15), ficha);
-        transicion.setToY(fila * (radio + 5) + radio * 2);
+        transicion.setToY(fila * radio);
 
         transicion.setOnFinished(event -> {
             puedoInsertar = true;
@@ -334,8 +335,9 @@ public class TableroController implements Initializable {
         String ganador = turnoJugador ? nameJugadorUno : nameJugadorDos;
         System.out.println("Ganador es: " + ganador);
         if (ganador.equals("ordenador")) {
-            System.out.println("Ganador: " + ganador);;
-        } else if(nameJugadorDos.equals("ordenador")) {
+            System.out.println("Ganador: " + ganador);
+            ;
+        } else if (nameJugadorDos.equals("ordenador")) {
             System.out.println("Has ganado bro");
         } else if (ganador.equals(jugadorUno.getNickName())) {
             LocalDateTime fecha = LocalDateTime.now();
