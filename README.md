@@ -8,7 +8,7 @@
 - [x] Jugar contra la máquina
 - [x] Jugar contra otro jugador
 - [x] Modificar perfil
-- [x] Recordar datos de autenticación
+- [ ] Recordar datos de autenticación
 - [ ] Mostrar ranking
 - [ ] Ver las partidas realizadas en el sistema en un periodo de tiempo
 - [ ] Ver las partidas realizadas por un jugador en un periodo de tiempo
