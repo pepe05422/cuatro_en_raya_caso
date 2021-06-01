@@ -6,17 +6,19 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,8 +39,10 @@ public class TableroController implements Initializable {
     private boolean turnoJugador = true;
     private boolean turnoAI = false;
 
-    private static String jugadorUno;
-    private static String jugadorDos;
+
+    private static String jugadorUno = RegisterMenu.getJugador1().getNickName();
+    private static String jugadorDos = "jugador2";
+
 
     private boolean puedoInsertar = true;
     private boolean instertarAI = false;
@@ -246,6 +250,7 @@ public class TableroController implements Initializable {
                 insertarAI();
             }
 
+
             gamePlayer.setText(turnoJugador ? jugadorUno : jugadorDos);
 
         });
@@ -311,7 +316,9 @@ public class TableroController implements Initializable {
     }
 
 
-    /** Metodo que saca una ventana emergente una vez que un jugador saque una combinacion de 4 **/
+    /**
+     * Metodo que saca una ventana emergente una vez que un jugador saque una combinacion de 4
+     **/
     private void juegoFinalizado() {
 
         String ganador = turnoJugador ? jugadorUno : jugadorDos;
@@ -390,6 +397,7 @@ public class TableroController implements Initializable {
                 RegisterMenu jugador = new RegisterMenu();
                 jugador.borrarJugador1();
                 jugador.borrarJugador2();
+                System.out.println("se vienen cositas");
                 Main.setRoot("RegisterMenu");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -397,7 +405,94 @@ public class TableroController implements Initializable {
         }
     }
 
-    /** Creamos un objeto de tipo Ficha que dependa del objeto principal Circulo **/
+    /**
+     * Definir el nombre del jugador mediante un metodo set, dado que es un atributo estatico
+     **/
+    public void setJugadorDos(String name) {
+        jugadorDos = name;
+    }
+
+    @FXML
+    public void modificarPerfil() {
+        try {
+            Scene modPerfil = new Scene(Main.loadFXML("ModifyProfile"));
+            Stage ventana = new Stage();
+            ventana.setScene(modPerfil);
+            ventana.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Inicio sesion de jugador 2
+     **/
+    @FXML
+    public void inicioSesionJugador2() {
+        StackPane inicioSesion = new StackPane();
+
+        TextField usuario = new TextField();
+        PasswordField contrasena = new PasswordField();
+        Button iniciarSesion = new Button();
+        Button cancelar = new Button();
+        VBox cajaVertical = new VBox();
+        HBox cajaHorizontal = new HBox();
+        Label mensaje = new Label();
+
+
+        cajaVertical.getChildren().add(usuario);
+        cajaVertical.getChildren().add(contrasena);
+        cajaVertical.getChildren().add(cajaHorizontal);
+        cajaHorizontal.getChildren().add(iniciarSesion);
+        cajaHorizontal.getChildren().add(cancelar);
+
+        inicioSesion.getChildren().add(cajaVertical);
+
+        cajaVertical.setPadding(new Insets(50));
+        cajaVertical.setSpacing(10);
+        cajaVertical.setAlignment(Pos.CENTER);
+
+        usuario.setFocusTraversable(false);
+        usuario.setPromptText("Nombre de usuario");
+
+        contrasena.setFocusTraversable(false);
+        contrasena.setPromptText("Contraseña");
+
+        cajaHorizontal.setSpacing(10);
+        iniciarSesion.setText("Iniciar sesión");
+        cancelar.setText("Cancelar");
+
+        Scene iniciar_sesion2 = new Scene(inicioSesion, 500, 350);
+        Stage nuevaVentana = new Stage();
+
+        nuevaVentana.setTitle("Iniciar Sesión Jugador 2");
+        nuevaVentana.setScene(iniciar_sesion2);
+        nuevaVentana.setMaxHeight(180);
+        nuevaVentana.setMaxWidth(400);
+        nuevaVentana.setMinHeight(180);
+        nuevaVentana.setMinWidth(400);
+
+        nuevaVentana.show();
+
+        iniciarSesion.setOnMouseClicked(ev -> {
+
+            if (RegisterMenu.llamaMetodosPlayer.checkCredentials(usuario.getText(), contrasena.getText())) {
+                RegisterMenu.setJugador2(usuario.getText(), contrasena.getText());
+                setJugadorDos(RegisterMenu.getJugador2().getNickName());
+                nuevaVentana.close();
+                mensaje.setText("Inicio de sesion satisfactorio");
+            } else {
+                mensaje.setText("Usuario o contraseña incorrectos");
+            }
+            cajaVertical.getChildren().add(mensaje);
+
+        });
+    }
+
+    /**
+     * Creamos un objeto de tipo Ficha que dependa del objeto principal Circulo
+     **/
 
     private static class Ficha extends Circle {
 

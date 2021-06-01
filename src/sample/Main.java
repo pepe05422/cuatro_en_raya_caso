@@ -14,7 +14,7 @@ public class Main extends Application {
 
     // Este metodo permite cargar el FXML unicamente pasando como parametro el nombre del
     // archivo sin necesidad de la extension
-    private static Parent loadFXML(String fxml) throws IOException{
+    public static Parent loadFXML(String fxml) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
@@ -27,10 +27,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Escena = new Scene(loadFXML("RegisterMenu"),1200, 800);
+        Escena = new Scene(loadFXML("RegisterMenu"),900, 600);
         primaryStage.setScene(Escena);
         primaryStage.show();
-        primaryStage.setMinHeight(800); // ***Hay que ajustar la altura minima
-        primaryStage.setMinWidth(1200);
+        primaryStage.setMinHeight(600); // ***Hay que ajustar la altura minima
+        primaryStage.setMinWidth(900);
     }
 
     public static void main(String[] args) {
