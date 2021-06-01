@@ -34,7 +34,6 @@ public class ModifyProfile implements Initializable {
     private Button bModificar;
 
 
-
     @FXML
     public void modificar() {
         String pass = contrasena.getText();
