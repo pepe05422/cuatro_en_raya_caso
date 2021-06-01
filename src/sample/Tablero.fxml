@@ -1,93 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" fx:controller="sample.TableroController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" style="-fx-background-color: #26d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="pantallaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="568.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TableroController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="953.9820556640625" minWidth="10.0" percentWidth="70.0"
+                           prefWidth="953.9820556640625"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" percentHeight="100.0" vgrow="SOMETIMES"/>
     </rowConstraints>
-    <children>
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-        <Circle fill="#daeeff" radius="50.0" stroke="#0d0dc6" strokeType="INSIDE" strokeWidth="2.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-    </children>
-    <opaqueInsets>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-    </opaqueInsets>
-    <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-    </padding>
+    <GridPane fx:id="espacioJuego" opacity="0.0" visible="false">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="-Infinity" percentHeight="100.0"/>
+        </rowConstraints>
+        <GridPane.margin>
+            <Insets bottom="480.0" left="-120.0"/>
+        </GridPane.margin>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0"/>
+    </GridPane>
+    <VBox fx:id="modoAntesJuego" alignment="CENTER" style="-fx-background-color: #687980;">
+        <Label prefHeight="44.0" prefWidth="666.0" text="Siga las instrucciones de derecha para jugar"
+               textFill="#eeeeee">
+            <font>
+                <Font size="36.0"/>
+            </font>
+        </Label>
+    </VBox>
+    <GridPane fx:id="menuJuego" alignment="CENTER" style="-fx-background-color: #02475e;" visible="false"
+              GridPane.columnIndex="1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" percentHeight="45.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" percentHeight="45.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <VBox alignment="TOP_CENTER">
+            <padding>
+                <Insets top="30.0"/>
+            </padding>
+            <Label prefHeight="44.0" prefWidth="269.0" text="Modo de juego" textFill="#eeeeee">
+                <font>
+                    <Font size="36.0"/>
+                </font>
+            </Label>
+            <Label fx:id="gameMode" alignment="CENTER" prefHeight="72.0" prefWidth="229.0" text="Multijugador"
+                   textAlignment="CENTER" textFill="#eeeeee">
+                <font>
+                    <Font size="27.0"/>
+                </font>
+            </Label>
+        </VBox>
+        <VBox alignment="TOP_CENTER" GridPane.rowIndex="1">
+            <Label alignment="CENTER" prefHeight="48.0" prefWidth="344.0" text="Le toca al jugador:"
+                   textAlignment="CENTER" textFill="#eeeeee">
+                <font>
+                    <Font size="36.0"/>
+                </font>
+            </Label>
+            <Label fx:id="gamePlayer" alignment="CENTER" prefHeight="72.0" prefWidth="229.0" text="Jugador1"
+                   textAlignment="CENTER" textFill="#eeeeee">
+                <font>
+                    <Font size="27.0"/>
+                </font>
+            </Label>
+        </VBox>
+        <VBox alignment="CENTER" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets/>
+            </GridPane.margin>
+            <Button fx:id="cerrarSesion" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                    onAction="#cerrarSesion" style="-fx-background-color: #fb3640; -fx-alignment: center;"
+                    text="Cerrar sesión" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+            </Button>
+        </VBox>
+    </GridPane>
+    <GridPane fx:id="modoEspera" style="-fx-background-color: #02475e;" GridPane.columnIndex="1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <VBox alignment="CENTER_RIGHT" prefWidth="100.0">
+            <GridPane.margin>
+                <Insets left="20.0" right="20.0"/>
+            </GridPane.margin>
+            <HBox alignment="TOP_RIGHT" spacing="15.0">
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                        onAction="#inicioSesionJugador2" text="Inicio sesion Jug 2" textAlignment="CENTER"/>
+                <Button mnemonicParsing="false" onAction="#modificarPerfil" text="Modificar Perfil"/>
+            </HBox>
+        </VBox>
+        <VBox alignment="CENTER" spacing="50.0" GridPane.rowIndex="1">
+            <Label prefHeight="44.0" prefWidth="268.0" text="Modo de juego" textFill="#eeeeee">
+                <font>
+                    <Font size="36.0"/>
+                </font>
+            </Label>
+            <HBox alignment="CENTER" maxWidth="-Infinity" minHeight="10.0" minWidth="200.0" prefHeight="20.0"
+                  prefWidth="250.0" spacing="40.0">
+                <VBox.margin>
+                    <Insets left="20.0" right="20.0"/>
+                </VBox.margin>
+                <Button id="modoMulti" fx:id="modoMulti" minHeight="-Infinity" minWidth="-Infinity"
+                        mnemonicParsing="false" onAction="#modoMultijugadorLocal" prefHeight="25.0" prefWidth="120.0"
+                        style="-fx-background-color: #f3bda1; -fx-alignment: center;" text="Multijugador"
+                        textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="13.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Button>
+                <Button fx:id="modoIA" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                        onAction="#modoMultijugadorIA" prefHeight="25.0" prefWidth="100.0"
+                        style="-fx-background-color: #f3bda1#f3bda1;" text="Ordenador" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="13.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Button>
+            </HBox>
+        </VBox>
+        <VBox alignment="CENTER" GridPane.rowIndex="2">
+            <Button fx:id="cerrarSesion2" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                    onAction="#cerrarSesion" style="-fx-background-color: #fb3640; -fx-alignment: center;"
+                    text="Cerrar sesión" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+            </Button>
+        </VBox>
+    </GridPane>
 </GridPane>
