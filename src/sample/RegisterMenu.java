@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -20,6 +21,9 @@ import javafx.stage.Stage;
 import model.Connect4;
 import model.Player;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -56,26 +60,26 @@ public class RegisterMenu implements Initializable {
     private Label mensajeDeErrorDeInicioDeSesion;
 
     @FXML
-    private ImageView avatar;
+    private ImageView ImgVwavatar;
 
     // Creacion de Objetos de las librerias para poder acceder a los metodos
     // A parte decir que el jugador será relevante para el LogIn y Registro
 
-    static Player Jugador1;
-    static Player Jugador2;
+    private static Player Jugador1;
+    private static Player Jugador2;
     static Player llamaMetodosPlayer;
 
-    boolean registroRellenado;
-    boolean ingresoRellenado;
+    private boolean registroRellenado;
+    private boolean ingresoRellenado;
 
-    String usuarioNombreRegistro;
-    String usuarioContrasenaRegistro;
-    String usuarioCorreoRegistro;
+    private String usuarioNombreRegistro;
+    private String usuarioContrasenaRegistro;
+    private String usuarioCorreoRegistro;
 
-    LocalDate nacimiento;
+    private LocalDate nacimiento;
 
 
-    static Connect4 conecta4;
+    public static Connect4 conecta4;
 
 
     @Override
@@ -152,10 +156,9 @@ public class RegisterMenu implements Initializable {
 
 
         if (ingresoRellenado && formularioInicioDeSesion.isVisible()) {
-
-            if (llamaMetodosPlayer.checkCredentials(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText())) {
+            Jugador1 = conecta4.loginPlayer(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText());
+            if (Jugador1.checkCredentials(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText())) {
                 try {
-                    Jugador1 = conecta4.loginPlayer(usuarioInicioSesion.getText(), contrasenaInicioSesion.getText());
                     Main.setRoot("Tablero");
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -186,38 +189,59 @@ public class RegisterMenu implements Initializable {
         if (registroRellenado && formularioRegistro.isVisible()) {
 
             if (!Player.checkNickName(usuarioNombreRegistro)) {
-                mensajeDeErrorDeRegistro.setText("Nombre de usuario no valido\nEl nombre de usuario debe tener entre 6 y 15 caracteres, contener letras mayusculas,\nminusculas o '_' y '-'");
+                mensajeDeErrorDeRegistro.setText("Nombre de usuario no valido\nEl nombre de usuario debe tener entre 6 y 15 caracteres, contener letras mayusculas,\nminusculas sin espacios\n en su lugar usar '_' o '-'");
             } else if (!Player.checkPassword(usuarioContrasenaRegistro)) {
                 mensajeDeErrorDeRegistro.setText("La contraseña no es valida\nuna contraseña valida debe tener entre 8 y 20 car�cteres\nal menos una letra mayuscula y minuscula\nal menos un digito\ny contener un caracter especial como !@#$%&()-+=");
             } else if (!Player.checkEmail(usuarioCorreoRegistro)) {
                 mensajeDeErrorDeRegistro.setText("Correo no valido");
             } else if (!(LocalDate.now().minusYears(nacimiento.getYear()).getYear() >= 18)) {
                 mensajeDeErrorDeRegistro.setText("Debe ser mayor a 18 años");
-            }
-            try {
-                if (!Connect4.getSingletonConnect4().exitsNickName(usuarioNombreRegistro)) {
-                    try {
-                        Jugador1 = conecta4.registerPlayer(usuarioNombreRegistro, usuarioCorreoRegistro, usuarioContrasenaRegistro, nacimiento, 0);
-                    } catch (Connect4DAOException e) {
-                        e.printStackTrace();
-                    }
+            } else {
+                try {
+                    if (!Connect4.getSingletonConnect4().exitsNickName(usuarioNombreRegistro)) {
+                        try {
+                            Jugador1 = conecta4.registerPlayer(usuarioNombreRegistro, usuarioCorreoRegistro, usuarioContrasenaRegistro, nacimiento, 0);
+                        } catch (Connect4DAOException e) {
+                            e.printStackTrace();
+                        }
 
-                    Main.setRoot("Tablero");
-                } else {
-                    mensajeDeErrorDeRegistro.setText("El usuario introducido ya existe");
+                        Main.setRoot("Tablero");
+                    } else {
+                        mensajeDeErrorDeRegistro.setText("El usuario introducido ya existe");
+                    }
+                } catch (Connect4DAOException e) {
+                    e.printStackTrace();
                 }
-            } catch (Connect4DAOException e) {
-                e.printStackTrace();
             }
+
         }
     }
 
 
-    public void borrarJugador1() {
+    public void cargarImagenLocal() {
+        String url = File.separator + "avatars" + File.separator + "avatar1.png";
+        Image avatar = new Image(url);
+        ImgVwavatar.imageProperty().setValue(avatar);
+    }
+
+    public void cargarImagenExterna() {
+        String url = "c:" + File.separator + "avatars" + File.separator + "avatar1.png";
+
+        Image avatar;
+        try {
+            avatar = new Image(new FileInputStream(url));
+            ImgVwavatar.imageProperty().setValue(avatar);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void borrarJugador1() {
         Jugador1 = null;
     }
 
-    public void borrarJugador2() {
+    public static void borrarJugador2() {
         Jugador2 = null;
     }
 
@@ -237,6 +261,7 @@ public class RegisterMenu implements Initializable {
     public void resetearCamposInicioSesion() {
         usuarioInicioSesion.clear();
         contrasenaInicioSesion.clear();
+        mensajeDeErrorDeInicioDeSesion.setText("");
     }
 
     public void resetearCamposRegistro() {
@@ -244,6 +269,6 @@ public class RegisterMenu implements Initializable {
         contrasenaRegistro.clear();
         correoRegistro.clear();
         fechaNacimientoRegistro.getEditor().clear();
-
+        mensajeDeErrorDeRegistro.setText("");
     }
 }
