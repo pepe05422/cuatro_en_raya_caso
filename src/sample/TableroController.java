@@ -334,9 +334,9 @@ public class TableroController implements Initializable {
 
         String ganador = turnoJugador ? nameJugadorUno : nameJugadorDos;
         System.out.println("Ganador es: " + ganador);
-        if (ganador.equals("ordenador")) {
+        if (ganador.equals("Ordenador")) {
             System.out.println("Ganador: " + ganador);
-        } else if (nameJugadorDos.equals("ordenador")) {
+        } else if (nameJugadorDos.equals("Ordenador")) {
             System.out.println("Has ganado bro");
         } else if (ganador.equals(jugadorUno.getNickName())) {
             LocalDateTime fecha = LocalDateTime.now();
@@ -420,7 +420,7 @@ public class TableroController implements Initializable {
                 turnoJugador = false;
                 instertarAI = true;
                 nameJugadorUno = jugadorUno.getNickName();
-                nameJugadorDos = "Ordenador1";
+                nameJugadorDos = "Ordenador";
                 iniciarModoJuego();
                 insertarAI();
             } catch (NullPointerException e) {

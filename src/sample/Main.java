@@ -30,6 +30,7 @@ public class Main extends Application {
      * **/
     public static void loadStyleNight() throws IOException {
         Escena.getStylesheets().add(Main.class.getResource("/styles/nightMode.css").toExternalForm());
+
     }
     public static void loadStyleDay() throws IOException {
         Escena.getStylesheets().remove(Main.class.getResource("/styles/nightMode.css").toExternalForm());
