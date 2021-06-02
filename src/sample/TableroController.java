@@ -337,11 +337,17 @@ public class TableroController implements Initializable {
         if (ganador.equals("Ordenador")) {
             System.out.println("Ganador: " + ganador);
         } else if (nameJugadorDos.equals("Ordenador")) {
+            try {
+                jugadorUno.plusPoints(5);
+            } catch (Connect4DAOException e) {
+                e.printStackTrace();
+            }
             System.out.println("Has ganado bro");
         } else if (ganador.equals(jugadorUno.getNickName())) {
             LocalDateTime fecha = LocalDateTime.now();
             try {
                 RegisterMenu.conecta4.regiterRound(fecha, jugadorUno, jugadorDos);
+                jugadorUno.plusPoints(50);
             } catch (Connect4DAOException e) {
                 e.printStackTrace();
             }
@@ -349,6 +355,7 @@ public class TableroController implements Initializable {
             LocalDateTime fecha = LocalDateTime.now();
             try {
                 RegisterMenu.conecta4.regiterRound(fecha, jugadorDos, jugadorUno);
+                jugadorDos.plusPoints(50);
             } catch (Connect4DAOException e) {
                 e.printStackTrace();
             }
@@ -453,7 +460,7 @@ public class TableroController implements Initializable {
     @FXML
     public void modificarPerfil() {
         try {
-            Scene modPerfil = new Scene(Main.loadFXML("Modificar perfil"));
+            Scene modPerfil = new Scene(Main.loadFXML("ModifyProfile"));
             Stage ventana = new Stage();
             ventana.setScene(modPerfil);
             ventana.show();
