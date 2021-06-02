@@ -3,6 +3,7 @@ package sample;
 import DBAccess.Connect4DAOException;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -33,6 +34,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import sample.Main;
+
 public class TableroController implements Initializable {
 
     private static final int columnas = 8;
@@ -40,37 +43,34 @@ public class TableroController implements Initializable {
     private static final double radio = 80.0;
     private Ficha[][] tablero = new Ficha[filas][columnas];
 
+
     private boolean turnoJugador = true;
     private boolean turnoAI = false;
 
 
     private static Player jugadorUno = RegisterMenu.getJugador1();
-    private static Player jugadorDos;
+    private static Player jugadorDos = RegisterMenu.getJugador2();
 
 
     private static String nameJugadorUno = jugadorUno.getNickName();
-    private static String nameJugadorDos = "ordenador";
+    private static String nameJugadorDos = "Ordenador";
+
 
     private boolean puedoInsertar = true;
     private boolean instertarAI = false;
+    protected  boolean modoOscuroRule = false;
 
     private Shape espacioJuegoTablero;
 
 
     @FXML
-    public GridPane pantallaPrincipal;
-    @FXML
-    public GridPane espacioJuego;
+    public GridPane pantallaPrincipal, espacioJuego, menuJuego, modoEspera;
     @FXML
     public VBox modoAntesJuego;
     @FXML
-    public GridPane menuJuego;
+    public Label gameMode, gamePlayer, prePlay, gameType, gamePlayerTurn, gameTypePlay;
     @FXML
-    public GridPane modoEspera;
-    @FXML
-    public Label gameMode, gamePlayer;
-    @FXML
-    public Button modoMulti, modoIA, cerrarSesion, cerrarSesion2;
+    public Button modoMulti, modoIA, cerrarSesion, cerrarSesion2, modoOscuro, inicioSesion2, modificarPerfil2;
 
 
     /**
@@ -207,7 +207,7 @@ public class TableroController implements Initializable {
                 turnoJugador = true;
                 turnoAI = false;
             }
-            gamePlayer.setText(turnoAI ? nameJugadorUno : nameJugadorDos);
+            gamePlayer.setText(turnoJugador ? nameJugadorUno : nameJugadorDos);
 
 
         });
@@ -397,6 +397,7 @@ public class TableroController implements Initializable {
                 modoAntesJuego.setVisible(false);
                 menuJuego.setVisible(true);
                 gameMode.setText("Multijugador");
+                nameJugadorDos = jugadorDos.getNickName();
                 iniciarModoJuego();
             } catch (NullPointerException e) {
                 e.printStackTrace();
@@ -418,7 +419,8 @@ public class TableroController implements Initializable {
                 turnoAI = true;
                 turnoJugador = false;
                 instertarAI = true;
-                nameJugadorDos = "ordenador";
+                nameJugadorUno = jugadorUno.getNickName();
+                nameJugadorDos = "Ordenador1";
                 iniciarModoJuego();
                 insertarAI();
             } catch (NullPointerException e) {
@@ -434,7 +436,6 @@ public class TableroController implements Initializable {
             try {
                 RegisterMenu.borrarJugador1();
                 RegisterMenu.borrarJugador2();
-                System.out.println("se vienen cositas");
                 Main.setRoot("RegisterMenu");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -452,7 +453,7 @@ public class TableroController implements Initializable {
     @FXML
     public void modificarPerfil() {
         try {
-            Scene modPerfil = new Scene(Main.loadFXML("ModifyProfile"));
+            Scene modPerfil = new Scene(Main.loadFXML("Modificar perfil"));
             Stage ventana = new Stage();
             ventana.setScene(modPerfil);
             ventana.show();
@@ -530,6 +531,21 @@ public class TableroController implements Initializable {
         });
     }
 
+    @FXML
+    public void modoOscuroSwitch() throws IOException {
+        if (modoOscuro.isArmed()) {
+            modoOscuroRule = !modoOscuroRule;
+            if (modoOscuroRule) {
+                Main.loadStyleNight();
+                modoOscuro.setText("Modo claro");
+            }
+            if (!modoOscuroRule) {
+                Main.loadStyleDay();
+                modoOscuro.setText("Modo oscuro");
+            }
+        }
+    }
+
     /**
      * Creamos un objeto de tipo Ficha que dependa del objeto principal Circulo
      **/
@@ -542,7 +558,7 @@ public class TableroController implements Initializable {
 
             this.alguienEstaMoviendo = alguienEstaMoviendo;
             setRadius(radio / 2);
-            setFill(alguienEstaMoviendo ? Color.valueOf("#24303E") : Color.valueOf("#4CAA88"));
+            setFill(alguienEstaMoviendo ? Color.valueOf("#f29191") : Color.valueOf("#1eae98"));
             setCenterX(radio / 2);
             setCenterY(radio / 2);
         }

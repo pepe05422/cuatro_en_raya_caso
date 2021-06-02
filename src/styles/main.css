@@ -1,0 +1,70 @@
+.root {
+    -fx-background-color: #ffffff;
+}
+.modoAntesJuego {
+    -fx-background-color: #687980;
+}
+.espacioDeJuego {
+    -fx-background-color: #ffffff;
+}
+.panelJuegoPrevio {
+    -fx-background-color:  #02475e;
+}
+panelJuego {
+    -fx-background-color:  #02475e;
+}
+/* TEXTOS */
+.preTextFont{
+    -fx-text-fill: #ffffff;
+}
+.modoDeJuegoTexto{
+    -fx-text-fill: #ffffff;
+}
+.modoTipo{
+    -fx-text-fill: #ffffff;
+}
+.turnoJuagadorTexto{
+    -fx-text-fill: #ffffff;
+}
+.turnoTipoTexto{
+    -fx-text-fill: #ffffff;
+}
+.gameTypePlayText{
+    -fx-text-fill: #ffffff;
+}
+/* BOTONES */
+.closeBtn {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #fb3640;
+    -fx-alignment: center;
+
+}
+.signInSecond {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #f3bda1;
+    -fx-alignment: center;
+
+}
+.modificarPerfil {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #f3bda1;
+    -fx-alignment: center;
+
+}
+.modoMultijugador {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #f3bda1;
+    -fx-alignment: center;
+
+}
+.modoOrdenador {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #f3bda1;
+    -fx-alignment: center;
+
+}
+.nightStyle {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #f3bda1;
+    -fx-alignment: center;
+}

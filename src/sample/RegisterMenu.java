@@ -1,6 +1,7 @@
 package sample;
 
 import DBAccess.Connect4DAOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -28,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
 
 
 public class RegisterMenu implements Initializable {
@@ -59,6 +61,10 @@ public class RegisterMenu implements Initializable {
     @FXML
     private Label mensajeDeErrorDeInicioDeSesion;
 
+
+    @FXML
+    private Button modoOscuro2;
+
     @FXML
     private ImageView ImgVwavatar;
 
@@ -80,6 +86,9 @@ public class RegisterMenu implements Initializable {
 
 
     public static Connect4 conecta4;
+
+    public static TableroController tablero;
+    private static boolean modoOscuroRule2 = false;
 
 
     @Override
@@ -270,5 +279,20 @@ public class RegisterMenu implements Initializable {
         correoRegistro.clear();
         fechaNacimientoRegistro.getEditor().clear();
         mensajeDeErrorDeRegistro.setText("");
+    }
+
+    public void modoOscuroSwitch2() throws IOException {
+
+
+        if (modoOscuro2.isArmed()) {
+            modoOscuroRule2 = !modoOscuroRule2;
+            if (modoOscuroRule2) {
+                Main.loadStyleNight();
+                modoOscuro2.setText("Modo claro");
+            }else {
+                Main.loadStyleDay();
+                modoOscuro2.setText("Modo oscuro");
+            }
+        }
     }
 }

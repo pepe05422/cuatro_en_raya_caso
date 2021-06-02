@@ -22,15 +22,26 @@ public class Main extends Application {
     // Este metodo permite cambiar de escena unicamente declarando el FXML root
     public static void setRoot(String fxml) throws IOException {
         Escena.setRoot(loadFXML(fxml));
+        Escena.getStylesheets().add(Main.class.getResource("/styles/main.css").toExternalForm());
+
+    }
+    /**
+     * Dos metodos para cargar y eliminar el archivo con estilos de Modo Noche/Dia
+     * **/
+    public static void loadStyleNight() throws IOException {
+        Escena.getStylesheets().add(Main.class.getResource("/styles/nightMode.css").toExternalForm());
+    }
+    public static void loadStyleDay() throws IOException {
+        Escena.getStylesheets().remove(Main.class.getResource("/styles/nightMode.css").toExternalForm());
     }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Escena = new Scene(loadFXML("RegisterMenu"), 1100, 600);
+        Escena = new Scene(loadFXML("RegisterMenu"), 1200, 600);
         primaryStage.setScene(Escena);
         primaryStage.show();
         primaryStage.setMinHeight(600);
-        primaryStage.setMinWidth(1100);
+        primaryStage.setMinWidth(1200);
     }
 
     public static void main(String[] args) {
