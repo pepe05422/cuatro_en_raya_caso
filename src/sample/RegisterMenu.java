@@ -282,6 +282,8 @@ public class RegisterMenu implements Initializable {
     }
 
     public void modoOscuroSwitch2() throws IOException {
+
+
         if (modoOscuro2.isArmed()) {
             modoOscuroRule2 = !modoOscuroRule2;
             if (modoOscuroRule2) {
