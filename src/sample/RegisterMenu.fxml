@@ -41,7 +41,7 @@
          </styleClass>
         </Label>
     </VBox>
-    <VBox id="formularioDeInicioDeSesion" fx:id="formularioInicioDeSesion" alignment="CENTER" maxWidth="550.0" prefHeight="0.0" prefWidth="250.0" spacing="15.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+    <VBox id="formularioDeInicioDeSesion" fx:id="formularioInicioDeSesion" alignment="CENTER" maxWidth="550.0" prefHeight="0.0" prefWidth="250.0" spacing="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
         <padding>
             <Insets left="50.0" right="50.0" top="30.0" />
         </padding>
@@ -63,7 +63,7 @@
         <TextFlow fx:id="recuperarContrasena" prefHeight="10.0" prefWidth="200.0" textAlignment="CENTER" />
         <Label fx:id="mensajeDeErrorDeInicioDeSesion" alignment="CENTER" contentDisplay="CENTER" maxHeight="80.0" maxWidth="-Infinity" prefHeight="80.0" prefWidth="400.0" textAlignment="CENTER" textFill="RED" />
     </VBox>
-    <VBox id="formularioDeRegistro" fx:id="formularioRegistro" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+    <VBox id="formularioDeRegistro" fx:id="formularioRegistro" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
         <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0">
             <TextField fx:id="usuarioRegistro" alignment="CENTER" maxWidth="350.0" prefHeight="0.0" prefWidth="250.0" promptText="Usuario">
             <styleClass>
