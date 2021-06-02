@@ -1,5 +1,5 @@
 /* Modo Oscuro */
-.root {
+.rootN {
     -fx-background-color: #222831 !important;
 }
 .modoAntesJuegoN {
@@ -63,6 +63,33 @@
     -fx-background-color: #f2a365 !important;
 }
 
-.pantallaPrincipalN {
-    -fx-background-color: deeppink !important;
+/* Pantalla de inicio */
+.inicioHeaderN {
+    -fx-text-fill: #ececec !important;
+}
+.regUserN {
+    -fx-background-color: #ececec !important;
+    -fx-prompt-text-fill: #222831 !important;
+}
+.regPasN {
+    -fx-background-color: #ececec !important;
+    -fx-prompt-text-fill: #222831 !important;
+}
+.regEmailN {
+    -fx-background-color: #ececec !important;
+    -fx-prompt-text-fill: #222831 !important;
+
+}
+.regDateN {
+    -fx-background-color: #ececec !important;
+    -fx-control-inner-background: #ececec !important;
+    -fx-prompt-text-fill: #222831 !important;
+}
+.signUserN {
+    -fx-background-color: #ececec !important;
+    -fx-prompt-text-fill: #222831 !important;
+}
+.signPasN {
+    -fx-background-color: #ececec !important;
+    -fx-prompt-text-fill: #222831 !important;
 }

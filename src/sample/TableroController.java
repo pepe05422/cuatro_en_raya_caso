@@ -49,16 +49,16 @@ public class TableroController implements Initializable {
 
 
     private static Player jugadorUno = RegisterMenu.getJugador1();
-    private static Player jugadorDos;
+    private static Player jugadorDos = RegisterMenu.getJugador2();
 
 
     private static String nameJugadorUno = jugadorUno.getNickName();
-    private static String nameJugadorDos = "ordenador";
+    private static String nameJugadorDos = "Ordenador";
 
 
     private boolean puedoInsertar = true;
     private boolean instertarAI = false;
-    protected boolean modoOscuroRule = false;
+    protected  boolean modoOscuroRule = false;
 
     private Shape espacioJuegoTablero;
 
@@ -207,7 +207,7 @@ public class TableroController implements Initializable {
                 turnoJugador = true;
                 turnoAI = false;
             }
-            gamePlayer.setText(turnoAI ? nameJugadorUno : nameJugadorDos);
+            gamePlayer.setText(turnoJugador ? nameJugadorUno : nameJugadorDos);
 
 
         });
@@ -397,6 +397,7 @@ public class TableroController implements Initializable {
                 modoAntesJuego.setVisible(false);
                 menuJuego.setVisible(true);
                 gameMode.setText("Multijugador");
+                nameJugadorDos = jugadorDos.getNickName();
                 iniciarModoJuego();
             } catch (NullPointerException e) {
                 e.printStackTrace();
@@ -418,7 +419,8 @@ public class TableroController implements Initializable {
                 turnoAI = true;
                 turnoJugador = false;
                 instertarAI = true;
-                nameJugadorDos = "ordenador";
+                nameJugadorUno = jugadorUno.getNickName();
+                nameJugadorDos = "Ordenador1";
                 iniciarModoJuego();
                 insertarAI();
             } catch (NullPointerException e) {
@@ -434,7 +436,6 @@ public class TableroController implements Initializable {
             try {
                 RegisterMenu.borrarJugador1();
                 RegisterMenu.borrarJugador2();
-                System.out.println("se vienen cositas");
                 Main.setRoot("RegisterMenu");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -537,31 +538,6 @@ public class TableroController implements Initializable {
             if (modoOscuroRule) {
                 Main.loadStyleNight();
                 modoOscuro.setText("Modo claro");
-                modoAntesJuego.getStyleClass().add("modoAntesJuegoN");
-                espacioJuego.getStyleClass().add("espacioDeJuegoN");
-                pantallaPrincipal.getStyleClass().add("rootN");
-                menuJuego.getStyleClass().add("panelJuegoPrevioN");
-                modoEspera.getStyleClass().add("panelJuegoN");
-                gameMode.getStyleClass().add("modoTipoN");
-                // Textos
-                gamePlayer.getStyleClass().add("turnoTipoTextoN");
-                prePlay.getStyleClass().add("preTextFontN");
-                gameType.getStyleClass().add("modoDeJuegoTextoN");
-                gamePlayerTurn.getStyleClass().add("turnoJuagadorTextoN");
-                gameTypePlay.getStyleClass().add("gameTypePlayTextN");
-                // Botones
-                modoMulti.getStyleClass().add("modoMultijugadorN");
-                modoIA.getStyleClass().add("modoOrdenadorN");
-                cerrarSesion.getStyleClass().add("closeBtnN");
-                cerrarSesion2.getStyleClass().add("closeBtnN");
-                inicioSesion2.getStyleClass().add("signInSecondN");
-                modificarPerfil2.getStyleClass().add("modificarPerfilN");
-                modoOscuro.getStyleClass().add("nightStyleN");
-
-                //Otros
-
-
-
             }
             if (!modoOscuroRule) {
                 Main.loadStyleDay();
