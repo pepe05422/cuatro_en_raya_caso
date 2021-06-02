@@ -3,6 +3,7 @@ package sample;
 import DBAccess.Connect4DAOException;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -33,12 +34,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import sample.Main;
+
 public class TableroController implements Initializable {
 
     private static final int columnas = 8;
     private static final int filas = 7;
     private static final double radio = 80.0;
     private Ficha[][] tablero = new Ficha[filas][columnas];
+
 
     private boolean turnoJugador = true;
     private boolean turnoAI = false;
@@ -51,26 +55,22 @@ public class TableroController implements Initializable {
     private static String nameJugadorUno = jugadorUno.getNickName();
     private static String nameJugadorDos = "ordenador";
 
+
     private boolean puedoInsertar = true;
     private boolean instertarAI = false;
+    protected boolean modoOscuroRule = false;
 
     private Shape espacioJuegoTablero;
 
 
     @FXML
-    public GridPane pantallaPrincipal;
-    @FXML
-    public GridPane espacioJuego;
+    public GridPane pantallaPrincipal, espacioJuego, menuJuego, modoEspera;
     @FXML
     public VBox modoAntesJuego;
     @FXML
-    public GridPane menuJuego;
+    public Label gameMode, gamePlayer, prePlay, gameType, gamePlayerTurn, gameTypePlay;
     @FXML
-    public GridPane modoEspera;
-    @FXML
-    public Label gameMode, gamePlayer;
-    @FXML
-    public Button modoMulti, modoIA, cerrarSesion, cerrarSesion2;
+    public Button modoMulti, modoIA, cerrarSesion, cerrarSesion2, modoOscuro, inicioSesion2, modificarPerfil2;
 
 
     /**
@@ -452,7 +452,7 @@ public class TableroController implements Initializable {
     @FXML
     public void modificarPerfil() {
         try {
-            Scene modPerfil = new Scene(Main.loadFXML("ModifyProfile"));
+            Scene modPerfil = new Scene(Main.loadFXML("Modificar perfil"));
             Stage ventana = new Stage();
             ventana.setScene(modPerfil);
             ventana.show();
@@ -530,6 +530,46 @@ public class TableroController implements Initializable {
         });
     }
 
+    @FXML
+    public void modoOscuroSwitch() throws IOException {
+        if (modoOscuro.isArmed()) {
+            modoOscuroRule = !modoOscuroRule;
+            if (modoOscuroRule) {
+                Main.loadStyleNight();
+                modoOscuro.setText("Modo claro");
+                modoAntesJuego.getStyleClass().add("modoAntesJuegoN");
+                espacioJuego.getStyleClass().add("espacioDeJuegoN");
+                pantallaPrincipal.getStyleClass().add("rootN");
+                menuJuego.getStyleClass().add("panelJuegoPrevioN");
+                modoEspera.getStyleClass().add("panelJuegoN");
+                gameMode.getStyleClass().add("modoTipoN");
+                // Textos
+                gamePlayer.getStyleClass().add("turnoTipoTextoN");
+                prePlay.getStyleClass().add("preTextFontN");
+                gameType.getStyleClass().add("modoDeJuegoTextoN");
+                gamePlayerTurn.getStyleClass().add("turnoJuagadorTextoN");
+                gameTypePlay.getStyleClass().add("gameTypePlayTextN");
+                // Botones
+                modoMulti.getStyleClass().add("modoMultijugadorN");
+                modoIA.getStyleClass().add("modoOrdenadorN");
+                cerrarSesion.getStyleClass().add("closeBtnN");
+                cerrarSesion2.getStyleClass().add("closeBtnN");
+                inicioSesion2.getStyleClass().add("signInSecondN");
+                modificarPerfil2.getStyleClass().add("modificarPerfilN");
+                modoOscuro.getStyleClass().add("nightStyleN");
+
+                //Otros
+
+
+
+            }
+            if (!modoOscuroRule) {
+                Main.loadStyleDay();
+                modoOscuro.setText("Modo oscuro");
+            }
+        }
+    }
+
     /**
      * Creamos un objeto de tipo Ficha que dependa del objeto principal Circulo
      **/
@@ -542,7 +582,7 @@ public class TableroController implements Initializable {
 
             this.alguienEstaMoviendo = alguienEstaMoviendo;
             setRadius(radio / 2);
-            setFill(alguienEstaMoviendo ? Color.valueOf("#24303E") : Color.valueOf("#4CAA88"));
+            setFill(alguienEstaMoviendo ? Color.valueOf("#f29191") : Color.valueOf("#1eae98"));
             setCenterX(radio / 2);
             setCenterY(radio / 2);
         }

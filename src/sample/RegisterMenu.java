@@ -1,6 +1,7 @@
 package sample;
 
 import DBAccess.Connect4DAOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -271,4 +272,5 @@ public class RegisterMenu implements Initializable {
         fechaNacimientoRegistro.getEditor().clear();
         mensajeDeErrorDeRegistro.setText("");
     }
+
 }
