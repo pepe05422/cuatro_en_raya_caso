@@ -404,7 +404,7 @@ public class TableroController implements Initializable {
                 modoAntesJuego.setVisible(false);
                 menuJuego.setVisible(true);
                 gameMode.setText("Multijugador");
-                //nameJugadorDos = jugadorDos.getNickName();
+                nameJugadorDos = jugadorDos.getNickName();
                 iniciarModoJuego();
             } catch (NullPointerException e) {
                 e.printStackTrace();

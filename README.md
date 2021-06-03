@@ -16,7 +16,10 @@
 - [ ] Ver las partidas perdidas por un jugador en un periodo de tiempo
 - [ ] Ver el número de partidas realizadas en un periodo de tiempo
 - [ ] Ver el numero de partidas ganadas/perdidas por un jugador en un periodo de tiempo
-- [ ] Cambiar en modo de visualización (Tema claro/oscuro)
+- [x] Cambiar en modo de visualización (Tema claro/oscuro)
 
 > Este proyecto está desarrollado en IntelliJ
 > con el JDK Amazon coretto 8.0.202
+
+A la atención de quien lo lea:
+	Sentimos el codigo espaguetti y la falta del proyecto, unicamente está este proyecto para aqui poder trabajar junto a mi compañero.
